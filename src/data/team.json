@@ -1,0 +1,19 @@
+{
+  "equipo": {
+    "nombre": "[EDITAR]",
+    "lema": "[EDITAR]",
+    "ocasion": "[EDITAR: evento o fecha]",
+    "escudo": "brand/escudo.png",
+    "acento": null
+  },
+  "jugadores": [
+    { "id": "p1", "nombre": "[EDITAR]", "apellido": "[EDITAR]", "dorsal": "[EDITAR]", "posicion": "arquero",       "capitan": true,  "rol": "[EDITAR]", "clip": "[EDITAR]", "corte": null, "paso_frame": null },
+    { "id": "p2", "nombre": "[EDITAR]", "apellido": "[EDITAR]", "dorsal": "[EDITAR]", "posicion": "cierre",        "capitan": false, "rol": "[EDITAR]", "clip": "[EDITAR]", "corte": null, "paso_frame": null },
+    { "id": "p3", "nombre": "[EDITAR]", "apellido": "[EDITAR]", "dorsal": "[EDITAR]", "posicion": "ala_izquierda", "capitan": false, "rol": "[EDITAR]", "clip": "[EDITAR]", "corte": null, "paso_frame": null },
+    { "id": "p4", "nombre": "[EDITAR]", "apellido": "[EDITAR]", "dorsal": "[EDITAR]", "posicion": "ala_derecha",   "capitan": false, "rol": "[EDITAR]", "clip": "[EDITAR]", "corte": null, "paso_frame": null },
+    { "id": "p5", "nombre": "[EDITAR]", "apellido": "[EDITAR]", "dorsal": "[EDITAR]", "posicion": "pivot",         "capitan": false, "rol": "[EDITAR]", "clip": "[EDITAR]", "corte": null, "paso_frame": null }
+  ],
+  "orden_presentacion": ["p1", "p2", "p3", "p4", "p5"],
+  "centro_foto_final": "p1",
+  "musica": "audio/musica.mp3"
+}

@@ -1,0 +1,6 @@
+node_modules/
+.venv/
+assets/work/
+dist/
+.DS_Store
+.env

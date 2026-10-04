@@ -256,23 +256,36 @@ ESTADO
 ==================================================================
 Rama única: ccr-a15b3306-j21m9o
 
-Fase actual: FASE 1 — plan presentado, esperando aprobación (modo plan). Nada de la Fase 1 ejecutado aún, salvo guardar este CLAUDE.md.
+Fase actual: FASE 1 TERMINADA — detenido en CHECKPOINT 1, esperando "OK" + datos del equipo (quién es quién).
 
-Material en el repo (al guardar este archivo):
-- models/rvm_mobilenetv3_fp32.onnx (15 MB) — ya en su carpeta final.
-- videos/VID-20261004-WA0087..WA0091.mp4 (5 clips de WhatsApp) — van a moverse a assets/raw/ con git mv.
-- No hay escudo.png ni música.
+Hecho en Fase 1:
+- Videos movidos con git mv a assets/raw/. Modelo en models/.
+- scripts/setup_env.sh (tal cual el prompt; todos los paquetes apt existen con ese nombre en Ubuntu 24.04, sin cambios), hook SessionStart en .claude/settings.json, .gitignore.
+- Proyecto Remotion 4.0.532 (create-video --blank, TS, sin Tailwind) movido a la raíz. Deps extra: @remotion/google-fonts y @remotion/media (versiones fijas 4.0.532).
+- Skill oficial instalada con `npx skills add remotion-dev/skills` en .claude/skills/ (remotion-best-practices, -multimedia, -render, etc.).
+- Navegador de Remotion OK: still de prueba renderizado (composición temporal "Prueba" en src/Composition.tsx; se reemplaza en Fase 3).
+- Análisis de clips en src/data/clips.json (cortes y paso_frame propuestos). team.json con plantilla en src/data/team.json.
+- Previews: previews/f1_WA0087..91.jpg y previews/f1_todos.jpg.
 
-Datos técnicos preliminares (ffprobe):
-- Los 5: H.264, 720x1280 vertical, sin metadato de rotación, ~60 fps VFR (avg 59,97-60).
-- Duraciones: WA0087 7,0 s · WA0088 16,2 s · WA0089 21,5 s · WA0090 25,7 s · WA0091 24,6 s.
-- OJO: la resolución nativa es 720 px de lado corto (compresión de WhatsApp), no 1080.
+Datos técnicos (ffprobe, los 5 iguales salvo duración):
+- H.264 Baseline, 720x1280 vertical, sin rotación, ~59,97 fps (VFR leve, jitter 15-18 ms), audio AAC (se descarta).
+- Duraciones: WA0087 7,04 s · WA0088 16,24 s · WA0089 21,48 s · WA0090 25,70 s · WA0091 24,61 s.
+- Fondo común: barril gigante de madera con banda negra, pasto y arbustos; sin otras personas en cuadro. WA0087 y WA0089 con sol fuerte; el resto más nublado (igualar en Fase 2).
+
+Cortes propuestos (seg. del original -> paso_frame a 30 fps desde el inicio del corte):
+- WA0087: 1,25-4,10 (2,85 s), pisa 2,37 s -> paso_frame 34. Plano americano (corta en rodillas).
+- WA0088: 12,25-14,90 (2,65 s), pisa 13,55 s -> 39. Casi entero (corta en tobillos).
+- WA0089: 4,75-7,75 (3,00 s), pisa 5,88 s -> 34. Cuerpo entero con pies y piso (persona más chica en cuadro).
+- WA0090: 7,75-10,75 (3,00 s), pisa 8,98 s -> 37. Plano americano tras el paso.
+- WA0091: 4,90-8,20 (3,30 s), pisa 5,78 s -> 27. Casi entero.
+- Alternativas vistas: WA0088 7,0-9,0 (brazos cruzados sin paso claro); WA0089 17,0-19,5 (sin paso claro); WA0090 17,0-20,0 (sonriendo); WA0091 20,0-23,2 (paso girando desde perfil).
 
 Decisiones:
-- (ninguna aún)
+- Resolución: se normaliza a 1080 de lado corto con lanczos en Fase 2 (propuesto; el usuario dio OK general sin objetar).
+- Encuadres mezclados: en Fase 3 usar el degradado Noche que funde la parte baja para todos, y sombra en piso solo si queda bien con WA0089.
 
 Pendientes / preguntas abiertas:
-- Llevar los clips a 1080 (upscale de 720) o trabajar a 720 nativo y escalar en Remotion.
-- ¿Hay originales sin comprimir (sin pasar por WhatsApp)?
-- Imagen "TEAM MYLQUIADES TCG" enviada en el chat: ¿es el escudo / nombre del equipo, o solo referencia?
-- Todos los [EDITAR] de team.json (nombres, dorsales, roles, quién es quién, nombre del equipo, lema, ocasión, a qué se dedica).
+- Quién es quién + nombres, apellidos, dorsales, roles (para completar team.json).
+- ¿Hay originales sin comprimir (sin WhatsApp)? Si llegan, se reemplazan en assets/raw/.
+- Imagen "TEAM MYLQUIADES TCG" enviada en el chat: ¿es el escudo / nombre del equipo, o solo referencia? Sin respuesta aún.
+- Nombre del equipo, lema, ocasión, a qué se dedica; escudo.png; musica.mp3.

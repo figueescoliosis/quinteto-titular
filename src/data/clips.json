@@ -1,0 +1,10 @@
+{
+  "_nota": "Análisis Fase 1. Tiempos en segundos del clip original; paso_frame contado desde el inicio del corte, a 30 fps.",
+  "clips": {
+    "VID-20261004-WA0087.mp4": { "duracion": 7.04, "encuadre": "plano americano (corta en rodillas)", "corte": [1.25, 4.10], "paso_s": 2.37, "paso_frame": 34 },
+    "VID-20261004-WA0088.mp4": { "duracion": 16.24, "encuadre": "casi entero (corta en tobillos)", "corte": [12.25, 14.90], "paso_s": 13.55, "paso_frame": 39 },
+    "VID-20261004-WA0089.mp4": { "duracion": 21.48, "encuadre": "cuerpo entero con pies y piso", "corte": [4.75, 7.75], "paso_s": 5.88, "paso_frame": 34 },
+    "VID-20261004-WA0090.mp4": { "duracion": 25.70, "encuadre": "plano americano tras el paso (corta a media pierna)", "corte": [7.75, 10.75], "paso_s": 8.98, "paso_frame": 37 },
+    "VID-20261004-WA0091.mp4": { "duracion": 24.61, "encuadre": "casi entero (corta en tobillos)", "corte": [4.90, 8.20], "paso_s": 5.78, "paso_frame": 27 }
+  }
+}
