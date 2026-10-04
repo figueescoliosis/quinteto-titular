@@ -1,6 +1,6 @@
 {
   "equipo": {
-    "nombre": "[EDITAR]",
+    "nombre": "Mylquiades",
     "lema": "[EDITAR]",
     "ocasion": "[EDITAR: evento o fecha]",
     "escudo": "brand/escudo.png",
@@ -11,10 +11,10 @@
       "id": "p1",
       "nombre": "Pablo",
       "apellido": "Ra",
-      "dorsal": "[EDITAR]",
-      "posicion": "arquero",
+      "dorsal": null,
+      "posicion": null,
       "capitan": true,
-      "rol": "[EDITAR]",
+      "rol": "capitán",
       "clip": "VID-20261004-WA0089.mp4",
       "corte": [
         4.75,
@@ -24,51 +24,63 @@
     },
     {
       "id": "p2",
-      "nombre": "[EDITAR]",
-      "apellido": "[EDITAR]",
-      "dorsal": "[EDITAR]",
-      "posicion": "cierre",
+      "nombre": "Felipe",
+      "apellido": "Arias",
+      "dorsal": null,
+      "posicion": null,
       "capitan": false,
-      "rol": "[EDITAR]",
-      "clip": "[EDITAR]",
-      "corte": null,
-      "paso_frame": null
+      "rol": "",
+      "clip": "VID-20261004-WA0087.mp4",
+      "corte": [
+        1.25,
+        4.1
+      ],
+      "paso_frame": 34
     },
     {
       "id": "p3",
-      "nombre": "[EDITAR]",
-      "apellido": "[EDITAR]",
-      "dorsal": "[EDITAR]",
-      "posicion": "ala_izquierda",
+      "nombre": "Benjamín",
+      "apellido": "Figueroa",
+      "dorsal": null,
+      "posicion": null,
       "capitan": false,
-      "rol": "[EDITAR]",
-      "clip": "[EDITAR]",
-      "corte": null,
-      "paso_frame": null
+      "rol": "",
+      "clip": "VID-20261004-WA0088.mp4",
+      "corte": [
+        12.25,
+        14.9
+      ],
+      "paso_frame": 39
     },
     {
       "id": "p4",
-      "nombre": "[EDITAR]",
-      "apellido": "[EDITAR]",
-      "dorsal": "[EDITAR]",
-      "posicion": "ala_derecha",
+      "nombre": "Vladimir",
+      "apellido": "Oviedo",
+      "dorsal": null,
+      "posicion": null,
       "capitan": false,
-      "rol": "[EDITAR]",
-      "clip": "[EDITAR]",
-      "corte": null,
-      "paso_frame": null
+      "rol": "",
+      "clip": "VID-20261004-WA0090.mp4",
+      "corte": [
+        7.75,
+        10.75
+      ],
+      "paso_frame": 37
     },
     {
       "id": "p5",
-      "nombre": "[EDITAR]",
-      "apellido": "[EDITAR]",
-      "dorsal": "[EDITAR]",
-      "posicion": "pivot",
+      "nombre": "Alonso",
+      "apellido": "Medina",
+      "dorsal": null,
+      "posicion": null,
       "capitan": false,
-      "rol": "[EDITAR]",
-      "clip": "[EDITAR]",
-      "corte": null,
-      "paso_frame": null
+      "rol": "",
+      "clip": "VID-20261004-WA0091.mp4",
+      "corte": [
+        4.9,
+        8.2
+      ],
+      "paso_frame": 27
     }
   ],
   "orden_presentacion": [

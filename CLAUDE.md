@@ -256,45 +256,37 @@ ESTADO
 ==================================================================
 Rama única: ccr-a15b3306-j21m9o
 
-Fase actual: FASE 1 TERMINADA — detenido en CHECKPOINT 1, esperando "OK" + datos del equipo (quién es quién).
+Fase actual: FASE 2 TERMINADA — detenido en CHECKPOINT 2, esperando "OK".
 
-Hecho en Fase 1:
-- Videos movidos con git mv a assets/raw/. Modelo en models/.
-- scripts/setup_env.sh (tal cual el prompt; todos los paquetes apt existen con ese nombre en Ubuntu 24.04, sin cambios), hook SessionStart en .claude/settings.json, .gitignore.
-- Proyecto Remotion 4.0.532 (create-video --blank, TS, sin Tailwind) movido a la raíz. Deps extra: @remotion/google-fonts y @remotion/media (versiones fijas 4.0.532).
-- Skill oficial instalada con `npx skills add remotion-dev/skills` en .claude/skills/ (remotion-best-practices, -multimedia, -render, etc.).
-- Navegador de Remotion OK: still de prueba renderizado (composición temporal "Prueba" en src/Composition.tsx; se reemplaza en Fase 3).
-- Análisis de clips en src/data/clips.json (cortes y paso_frame propuestos). team.json con plantilla en src/data/team.json.
-- Previews: previews/f1_WA0087..91.jpg y previews/f1_todos.jpg.
+Equipo (confirmado por el usuario):
+- Es un equipo de Mitos y Leyendas (TCG) llamado "Mylquiades". El formato futsal/Champions es solo la presentación.
+- SIN posiciones ni dorsales en pantalla (team.json: posicion=null, dorsal=null). Solo Pablo Ra lleva rol: "capitán".
+- "Pablo Ra" es su nombre así tal cual (nombre "Pablo", apellido "Ra").
+- p1 Pablo Ra (WA0089, capitán) · p2 Felipe Arias (WA0087) · p3 Benjamín Figueroa (WA0088) · p4 Vladimir Oviedo (WA0090) · p5 Alonso Medina (WA0091).
+- Los videos deben ir SIN el fondo (recortados) y estandarizados entre sí.
 
-Datos técnicos (ffprobe, los 5 iguales salvo duración):
-- H.264 Baseline, 720x1280 vertical, sin rotación, ~59,97 fps (VFR leve, jitter 15-18 ms), audio AAC (se descarta).
-- Duraciones: WA0087 7,04 s · WA0088 16,24 s · WA0089 21,48 s · WA0090 25,70 s · WA0091 24,61 s.
-- Fondo común: barril gigante de madera con banda negra, pasto y arbustos; sin otras personas en cuadro. WA0087 y WA0089 con sol fuerte; el resto más nublado (igualar en Fase 2).
+Hecho en Fase 1: entorno (setup_env.sh sin cambios, hook, .gitignore), Remotion 4.0.532 en la raíz con @remotion/google-fonts y @remotion/media, skill remotion-dev/skills en .claude/skills/, análisis de clips en src/data/clips.json, previews f1_*.
 
-Cortes propuestos (seg. del original -> paso_frame a 30 fps desde el inicio del corte):
-- WA0087: 1,25-4,10 (2,85 s), pisa 2,37 s -> paso_frame 34. Plano americano (corta en rodillas).
-- WA0088: 12,25-14,90 (2,65 s), pisa 13,55 s -> 39. Casi entero (corta en tobillos).
-- WA0089: 4,75-7,75 (3,00 s), pisa 5,88 s -> 34. Cuerpo entero con pies y piso (persona más chica en cuadro).
-- WA0090: 7,75-10,75 (3,00 s), pisa 8,98 s -> 37. Plano americano tras el paso.
-- WA0091: 4,90-8,20 (3,30 s), pisa 5,78 s -> 27. Casi entero.
-- Alternativas vistas: WA0088 7,0-9,0 (brazos cruzados sin paso claro); WA0089 17,0-19,5 (sin paso claro); WA0090 17,0-20,0 (sonriendo); WA0091 20,0-23,2 (paso girando desde perfil).
+Hecho en Fase 2 (todo reproducible con scripts/pipeline_fase2.sh):
+- scripts/normalize.py: corte según team.json, 30 fps CFR, 1080x1920 lanczos (desde 720p), sin audio -> assets/work/norm/pN.mp4.
+  Igualación leve: ganancia por canal en lineal medida sobre la pared del barril (franja 5-35 % de alto), al 50 %.
+  Ganancias RGB: p1 1.17/1.23/1.22 · p2 1.01/1.05/1.08 · p3 0.94/0.92/0.91 · p4 0.92/0.91/0.92 · p5 0.97/0.92/0.90.
+- scripts/matte.py (RVM mobilenetv3, ONNX CPU, estado recurrente reiniciado por clip y precalentado con 12 frames).
+  downsample_ratio 0,4 en p1/p3/p5 (cuerpo entero), 0,25 en p2/p4 (plano americano). Se probó 0,25 vs 0,4 en p1: casi idéntico.
+  Tiempos: p1 90 fr 46 s (0,52 s/fr) · p2 86 fr 32 s (0,37) · p3 80 fr 40 s (0,50) · p4 90 fr 34 s (0,38) · p5 99 fr 50 s (0,51).
+- scripts/cleanup.py: quita restos de las rendijas oscuras del barril junto a la cabeza (apertura morfológica k=27 en p1/p5, 15 en el resto + componente mayor), erosión 1 px + feather, y descontaminación del color de la madera en los bordes.
+- scripts/encode_alpha.sh: public/alpha/pN.webm (VP9 yuva420p, alpha_mode=1, crf 26) + pN_final.png (último frame). 44 MB en total.
+- Verificado: Remotion decodifica el alpha del webm con <Video> de @remotion/media (composición temporal "Prueba").
+- Previews: previews/f2_pN_magenta.jpg, f2_pN_noche.jpg, f2_recortes_noche.mp4 (14,8 s, 540 px).
 
-Decisiones:
-- Resolución: se normaliza a 1080 de lado corto con lanczos en Fase 2 (propuesto; el usuario dio OK general sin objetar).
-- Encuadres mezclados: en Fase 3 usar el degradado Noche que funde la parte baja para todos, y sombra en piso solo si queda bien con WA0089.
-
-Quién es quién (confirmado por el usuario):
-- WA0087 = Felipe Arias
-- WA0088 = Benjamín Figueroa
-- WA0089 = Pablo Ra — CAPITÁN -> p1 (arquero), ya cargado en team.json
-- WA0090 = Vladimir Oviedo
-- WA0091 = Alonso Medina
-- El equipo es de Mitos y Leyendas (TCG), no de fútbol.
+Detalles a tener en cuenta:
+- En el paso_frame varios aún están cruzando los brazos (se cruzan justo con el paso). Es natural.
+- p5: en ~5 frames alrededor del paso queda un rastro tenue junto al cuello.
+- Encuadres mezclados: p1 entero con pies; p3/p5 cortan en tobillos; p2/p4 plano americano -> usar degradado Noche abajo para todos.
 
 Pendientes / preguntas abiertas:
-- Posición de Felipe, Benjamín, Vladimir y Alonso (cierre, ala izq., ala der., pívot) -> define p2..p5.
-- Dorsales y roles de los 5. ¿"Ra" es el apellido completo de Pablo?
-- ¿Hay originales sin comprimir (sin WhatsApp)? Si llegan, se reemplazan en assets/raw/.
-- Imagen "TEAM MYLQUIADES TCG" enviada en el chat: ¿es el escudo / nombre del equipo, o solo referencia? Sin respuesta aún.
-- Nombre del equipo, lema, ocasión, a qué se dedica; escudo.png; musica.mp3.
+- La escena E3 "Formación" (rombo 1-2-1 con dorsales) choca con "sin posiciones ni dorsales": proponer reemplazo en Fase 3/4 (p. ej. los 5 en fila / "alineación" sin cancha). Preguntar al usuario.
+- El dorsal gigante detrás de cada persona tampoco va: proponer otro elemento de fondo (inicial o apellido gigante). Preguntar.
+- Escudo: ¿se usa el emblema de la imagen "TEAM MYLQUIADES TCG"? Si sí, que suba el PNG; si no, propuesta simple con iniciales en plata.
+- Lema y ocasión ([EDITAR]; si quedan vacíos no se muestran). Música.
+- ¿Hay originales sin comprimir (sin WhatsApp)?
