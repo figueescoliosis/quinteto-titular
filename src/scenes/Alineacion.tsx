@@ -1,7 +1,6 @@
 import React from "react";
 import { AbsoluteFill, Img, interpolate, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { EQUIPO, ORDEN, visible } from "../data/equipo";
-import { Capitan } from "../components/Capitan";
 import { Retrato } from "../components/Retrato";
 import { LineaPlata, TextoPlata } from "../components/TextoPlata";
 import { COLOR, CURVA, LEXEND, clamp } from "../theme";
@@ -30,7 +29,6 @@ export const Alineacion: React.FC = () => {
       foto: interpolate(frame, [t + 4, t + 18], [0, 1], { ...clamp, easing: CURVA }),
       texto: interpolate(frame, [t + 6, t + 20], [0, 1], { ...clamp, easing: CURVA }),
       brillo: interpolate(frame, [t + 10, t + 32], [0, 1], clamp),
-      cap: interpolate(frame, [t + 14, t + 34], [0, 1], clamp),
       linea: interpolate(frame, [t + 10, t + 26], [0, 1], { ...clamp, easing: CURVA }),
     };
   });
@@ -78,7 +76,7 @@ export const Alineacion: React.FC = () => {
 
       {vertical ? (
         <div style={{ position: "absolute", left: 120, right: 120, top: 560, display: "flex", flexDirection: "column" }}>
-          {items.map(({ j, anillo, foto, texto, brillo, cap, linea }, i) => {
+          {items.map(({ j, anillo, foto, texto, brillo, linea }, i) => {
             const size = 170;
             const apSize = Math.min(78, 600 / (j.apellido.length * 1.12));
             return (
@@ -91,7 +89,6 @@ export const Alineacion: React.FC = () => {
                       <div style={{ fontSize: apSize, fontWeight: 700, letterSpacing: "0.12em", lineHeight: 1.1, ...revelar(texto) }}>
                         <TextoPlata brillo={brillo}>{j.apellido.toUpperCase()}</TextoPlata>
                       </div>
-                      {j.capitan ? <Capitan size={apSize * 0.8} progreso={cap} /> : null}
                     </div>
                   </div>
                 </div>
@@ -111,7 +108,7 @@ export const Alineacion: React.FC = () => {
             justifyContent: "space-between",
           }}
         >
-          {items.map(({ j, anillo, foto, texto, brillo, cap }) => {
+          {items.map(({ j, anillo, foto, texto, brillo }) => {
             const size = 230;
             const apSize = Math.min(54, 330 / (j.apellido.length * 1.12));
             return (
@@ -122,7 +119,6 @@ export const Alineacion: React.FC = () => {
                   <div style={{ fontSize: apSize, fontWeight: 700, letterSpacing: "0.12em", marginRight: "-0.12em", lineHeight: 1.1, ...revelar(texto) }}>
                     <TextoPlata brillo={brillo}>{j.apellido.toUpperCase()}</TextoPlata>
                   </div>
-                  {j.capitan ? <Capitan size={apSize * 0.85} progreso={cap} /> : null}
                 </div>
               </div>
             );

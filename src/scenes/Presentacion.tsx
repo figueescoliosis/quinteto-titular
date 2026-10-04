@@ -1,7 +1,6 @@
 import React from "react";
 import { AbsoluteFill, Img, interpolate, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import team from "../data/team.json";
-import { Capitan } from "../components/Capitan";
 import { Fondo, Grano, Vineta } from "../components/Fondo";
 import { Persona, colocar, type Colocacion } from "../components/Persona";
 import { LineaPlata, TextoPlata } from "../components/TextoPlata";
@@ -54,7 +53,6 @@ export const Presentacion: React.FC<{ pid: string; logo: TratamientoLogo; standa
   const brillo = interpolate(frame, [t0 + 8, t0 + 30], [0, 1], clamp);
   const lineaP = interpolate(frame, [t0 + 8, t0 + 24], [0, 1], { ...clamp, easing: CURVA });
   const rolP = interpolate(frame, [t0 + 12, t0 + 26], [0, 1], { ...clamp, easing: CURVA });
-  const capitanP = interpolate(frame, [t0 + 10, t0 + 30], [0, 1], clamp);
   const camara = interpolate(frame, [0, 105], [1, 1.04], clamp);
 
   // Revelado de texto: sube desde detrás de una máscara (sin fade+slide genérico) y el tracking se cierra.
@@ -107,7 +105,6 @@ export const Presentacion: React.FC<{ pid: string; logo: TratamientoLogo; standa
         >
           <TextoPlata brillo={brillo}>{apellido}</TextoPlata>
         </div>
-        {j.capitan ? <Capitan size={apellidoSize * 0.78} progreso={capitanP} /> : null}
       </div>
       <div style={{ marginTop: vertical ? 26 : 22 }}>
         <LineaPlata progreso={lineaP} ancho={vertical ? 560 : 640} origen={vertical ? "centro" : "izquierda"} />

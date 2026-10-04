@@ -256,7 +256,7 @@ ESTADO
 ==================================================================
 Rama única: ccr-a15b3306-j21m9o
 
-Fase actual: FASE 4 (escenas) LISTA — detenido en CHECKPOINT 4, esperando "OK" o ajustes.
+Fase actual: FASE 4 — ajustes post-Checkpoint 4 aplicados; esperando "OK" para Fase 5.
 
 Equipo (confirmado por el usuario):
 - Es un equipo de Mitos y Leyendas (TCG) llamado "Mylquiades". El formato futsal/Champions es solo la presentación.
@@ -320,6 +320,13 @@ Hecho en Fase 4:
 - Campos con "[EDITAR" o vacíos no se muestran (src/data/equipo.ts -> visible()).
 - Sin música ni SFX (no hay archivos); puntos de sync en src/timing.ts (SFX).
 - Previews a media escala: previews/f4_quinteto_Vertical.mp4 y previews/f4_quinteto_Horizontal.mp4 (scripts/render_previews.sh).
+
+Ajustes pedidos tras Checkpoint 4 (aplicados):
+- Benjamín (p3, WA0088): su toma se veía mal (mentón muy arriba, reflejo en lentes). Ninguno de sus intentos tiene brazos cruzados + cabeza nivelada todo el rato;
+  nuevo corte 12,10-13,60 s (termina justo al cruzar los brazos, antes de levantar el mentón), paso_frame 43; luego se congela su último frame (~2 s).
+  Reproceso solo de p3: normalize.py p3 (reutiliza scripts/ganancias.json), matte.py p3 0.4, cleanup.py p3 15, encode_alpha.sh p3, encuadre.py.
+- Se quitó la C de capitán (insignia) en todo el video; Pablo conserva el texto "capitán" bajo su línea.
+- Videos de prueba: previews/prueba_felipe_arias_9x16.mp4, prueba_felipe_arias_16x9.mp4, prueba_benjamin_figueroa_9x16.mp4 (scripts/render_pruebas.sh).
 
 Pendientes / preguntas abiertas:
 - Lema y ocasión ([EDITAR]; si quedan vacíos no se muestran). Música.
