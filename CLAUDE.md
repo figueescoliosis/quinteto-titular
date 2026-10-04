@@ -256,7 +256,7 @@ ESTADO
 ==================================================================
 Rama única: ccr-a15b3306-j21m9o
 
-Fase actual: FASE 3 (style frame) LISTA — detenido en CHECKPOINT 3, esperando aprobación del look.
+Fase actual: FASE 4 (escenas) LISTA — detenido en CHECKPOINT 4, esperando "OK" o ajustes.
 
 Equipo (confirmado por el usuario):
 - Es un equipo de Mitos y Leyendas (TCG) llamado "Mylquiades". El formato futsal/Champions es solo la presentación.
@@ -307,8 +307,20 @@ Hecho en Fase 3 (style frame de p1):
 Cambios contra "plantilla deportiva genérica": escudo monocromo plata en vez de a todo color; texto que emerge desde una máscara con el tracking
 cerrándose (no fade+slide); una sola familia tipográfica; el único golpe de luz es el paso (contraluz que sigue la silueta + núcleo Hielo).
 
+Checkpoint 3 aprobado: "todo ok" salvo que el logo detrás estaba descentrado -> ahora va centrado en la columna de la persona
+(se quitó el ajuste por persona escudoDx). Escudo plata detrás de cada persona; a color en intro y cierre. p2..p5 sin rol.
+
+Hecho en Fase 4:
+- src/Quinteto.tsx: composiciones "Quinteto-Vertical" (1080x1920) y "Quinteto-Horizontal" (1920x1080), 900 frames, mismo timing.
+  Fondo/viñeta/grano globales; escenas en <Sequence>; transición de barrido plateado (10 frames) centrada en cada corte.
+- E1 src/scenes/Intro.tsx (0-90): estrellas que convergen, destello, escudo a color, "QUINTETO TITULAR" plata con barrido, "Team Mylquiades".
+- E2 src/scenes/Presentacion.tsx (90-615): 5 x 105 en orden_presentacion; congela el último frame si el clip es más corto.
+- E3 src/scenes/Alineacion.tsx (615-780): reemplaza la cancha. "ALINEACIÓN" + 5 retratos circulares (src/components/Retrato.tsx) con nombre/APELLIDO en cascada; C de capitán junto a Pablo. Vertical en filas, horizontal en columnas.
+- E4 src/scenes/Cierre.tsx (780-900): los 5 en V (capitán adelante), escudo a color, "MYLQUIADES" en plata, lema si existe, destello final y fundido a negro.
+- Campos con "[EDITAR" o vacíos no se muestran (src/data/equipo.ts -> visible()).
+- Sin música ni SFX (no hay archivos); puntos de sync en src/timing.ts (SFX).
+- Previews a media escala: previews/f4_quinteto_Vertical.mp4 y previews/f4_quinteto_Horizontal.mp4 (scripts/render_previews.sh).
+
 Pendientes / preguntas abiertas:
-- Aprobación del look (escudo plata vs color detrás de la persona).
-- p2..p5 sin rol: bajo la línea no aparece nada (solo Pablo muestra "capitán").
 - Lema y ocasión ([EDITAR]; si quedan vacíos no se muestran). Música.
 - ¿Hay originales sin comprimir (sin WhatsApp)?

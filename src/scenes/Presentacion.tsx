@@ -1,6 +1,5 @@
 import React from "react";
 import { AbsoluteFill, Img, interpolate, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
-import ajustes from "../data/ajustes.json";
 import team from "../data/team.json";
 import { Capitan } from "../components/Capitan";
 import { Fondo, Grano, Vineta } from "../components/Fondo";
@@ -18,7 +17,11 @@ const ESCUDO_CARA_Y = 0.36;
 // Ancho aproximado de Lexend Exa en mayúsculas con el tracking usado (em por carácter).
 const EM_POR_LETRA = 1.12;
 
-export const Presentacion: React.FC<{ pid: string; logo: TratamientoLogo }> = ({ pid, logo }) => {
+export const Presentacion: React.FC<{ pid: string; logo: TratamientoLogo; standalone?: boolean }> = ({
+  pid,
+  logo,
+  standalone = true,
+}) => {
   const frame = useCurrentFrame();
   const { width, height } = useVideoConfig();
   const vertical = height > width;
@@ -33,8 +36,8 @@ export const Presentacion: React.FC<{ pid: string; logo: TratamientoLogo }> = ({
   // persona (no compiten) y la banda "TEAM" asoma por encima de su cabeza.
   const logoW = col.cabezaAncho * 5.75;
   const logoTop = col.cabezaTop + col.cabezaAncho * 0.7 - ESCUDO_CARA_Y * logoW * ESCUDO_RATIO;
-  const ajuste = (ajustes as Record<string, { escudoDx?: number }>)[pid] ?? {};
-  const logoCx = col.cabezaCx + (ajuste.escudoDx ?? 0) * col.cabezaAncho;
+  // Centrado en la columna de la persona (centro del lienzo en vertical, tercio izquierdo en horizontal).
+  const logoCx = col.cabezaCx;
   const textoMaxW = vertical ? width - 120 : width * 0.44;
   const apellido = j.apellido.toUpperCase();
   const apellidoSize = Math.min(vertical ? 150 : 170, textoMaxW / (apellido.length * EM_POR_LETRA));
@@ -74,7 +77,7 @@ export const Presentacion: React.FC<{ pid: string; logo: TratamientoLogo }> = ({
         position: "absolute",
         ...(vertical
           ? { left: 0, right: 0, top: 1430, textAlign: "center" as const, alignItems: "center" }
-          : { left: width * 0.53, top: 350, textAlign: "left" as const, alignItems: "flex-start" }),
+          : { left: width * 0.585, top: 350, textAlign: "left" as const, alignItems: "flex-start" }),
         display: "flex",
         flexDirection: "column",
         fontFamily: LEXEND,
@@ -129,7 +132,7 @@ export const Presentacion: React.FC<{ pid: string; logo: TratamientoLogo }> = ({
   return (
     <AbsoluteFill style={{ overflow: "hidden" }}>
       <AbsoluteFill style={{ scale: String(camara), transformOrigin: vertical ? "50% 40%" : "30% 45%" }}>
-        <Fondo />
+        {standalone ? <Fondo /> : null}
         {/* Logo detrás de la persona: entra desde desenfoque 1,1 -> 1,0 y gana brillo en el paso */}
         <Img
           src={staticFile("brand/escudo.png")}
@@ -169,8 +172,8 @@ export const Presentacion: React.FC<{ pid: string; logo: TratamientoLogo }> = ({
         />
         {bloqueTexto}
       </AbsoluteFill>
-      <Vineta />
-      <Grano />
+      {standalone ? <Vineta /> : null}
+      {standalone ? <Grano /> : null}
     </AbsoluteFill>
   );
 };
