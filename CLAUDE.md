@@ -70,7 +70,7 @@ Video de presentación de un equipo de 5 personas como la alineación titular en
 - Formación: futsal, rombo 1-2-1 + arquero (arquero, cierre, ala izquierda, ala derecha, pívot).
 - Somos exactamente 5. El arquero es también el capitán.
 - Sin logos, himno, balón de estrellas ni tipografías oficiales de la UEFA: solo la atmósfera.
-- Qué es el equipo y a qué se dedica: [EDITAR]
+- Qué es el equipo y a qué se dedica: equipo competitivo de Mitos y Leyendas (TCG, juego de cartas). No es de fútbol: se usa el formato de alineación de futsal como metáfora para presentarlo.
 
 ==================================================================
 3. ESTRUCTURA
@@ -284,8 +284,17 @@ Decisiones:
 - Resolución: se normaliza a 1080 de lado corto con lanczos en Fase 2 (propuesto; el usuario dio OK general sin objetar).
 - Encuadres mezclados: en Fase 3 usar el degradado Noche que funde la parte baja para todos, y sombra en piso solo si queda bien con WA0089.
 
+Quién es quién (confirmado por el usuario):
+- WA0087 = Felipe Arias
+- WA0088 = Benjamín Figueroa
+- WA0089 = Pablo Ra — CAPITÁN -> p1 (arquero), ya cargado en team.json
+- WA0090 = Vladimir Oviedo
+- WA0091 = Alonso Medina
+- El equipo es de Mitos y Leyendas (TCG), no de fútbol.
+
 Pendientes / preguntas abiertas:
-- Quién es quién + nombres, apellidos, dorsales, roles (para completar team.json).
+- Posición de Felipe, Benjamín, Vladimir y Alonso (cierre, ala izq., ala der., pívot) -> define p2..p5.
+- Dorsales y roles de los 5. ¿"Ra" es el apellido completo de Pablo?
 - ¿Hay originales sin comprimir (sin WhatsApp)? Si llegan, se reemplazan en assets/raw/.
 - Imagen "TEAM MYLQUIADES TCG" enviada en el chat: ¿es el escudo / nombre del equipo, o solo referencia? Sin respuesta aún.
 - Nombre del equipo, lema, ocasión, a qué se dedica; escudo.png; musica.mp3.
