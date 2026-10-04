@@ -15,12 +15,12 @@
       "duracion": 16.24,
       "encuadre": "casi entero (corta en tobillos)",
       "corte": [
-        12.1,
-        13.6
+        6.3,
+        8.9
       ],
-      "paso_s": 13.55,
-      "paso_frame": 43,
-      "nota": "Rehecho: termina al cruzar los brazos, antes de que levante el mentón; luego se congela."
+      "paso_s": 7.2,
+      "paso_frame": 27,
+      "nota": "Rehecho 2: intento 6,3-8,9 s; paso a 7,2 s y brazos bien cruzados con manos guardadas desde 7,5 s. Mejorado con IA."
     },
     "VID-20261004-WA0089.mp4": {
       "duracion": 21.48,

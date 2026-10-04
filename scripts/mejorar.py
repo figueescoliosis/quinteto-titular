@@ -103,15 +103,21 @@ if PRUEBA:
     sys.exit(0)
 
 norm = ROOT / "assets/work/norm"
-enc_cmd = ["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "bgr24", "-s", "1080x1920", "-r", "30",
-           "-i", "-", "-c:v", "libx264", "-crf", "10", "-preset", "slow", "-pix_fmt", "yuv420p", str(norm / f"{pid}_raw.mp4")]
-proc = subprocess.Popen(enc_cmd, stdin=subprocess.PIPE)
+# Cada frame mejorado se guarda apenas termina: si la VM se reinicia, se retoma donde quedó.
+cache = ROOT / "assets/work/ia" / f"{pid}_{a}_{b}"; cache.mkdir(parents=True, exist_ok=True)
 t0 = time.time(); kps = None
 for i, f in enumerate(frames):
+    png, kf = cache / f"{i:04d}.png", cache / f"{i:04d}.npy"
+    if png.exists():
+        kps = np.load(kf) if kf.exists() else None
+        continue
     mej, kps = procesar(f, kps)
-    proc.stdin.write(mej.tobytes())
+    if kps is not None: np.save(kf, kps)
+    cv2.imwrite(str(png), mej, [cv2.IMWRITE_PNG_COMPRESSION, 1])
     print(f"{pid} frame {i + 1}/{len(frames)} {time.time() - t0:.0f}s", flush=True)
-proc.stdin.close(); proc.wait()
+subprocess.run(["ffmpeg", "-v", "error", "-y", "-framerate", "30", "-i", str(cache / "%04d.png"),
+                "-frames:v", str(len(frames)), "-c:v", "libx264", "-crf", "10", "-preset", "slow",
+                "-pix_fmt", "yuv420p", str(norm / f"{pid}_raw.mp4")], check=True)
 
 g = json.loads((ROOT / "scripts/ganancias.json").read_text())[pid]
 expr = lambda gain: f"255*pow(min(1,pow(((val/255)+0.055)/1.055,2.4)*{gain:.4f}),1/2.4)"
