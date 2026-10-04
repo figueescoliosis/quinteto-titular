@@ -256,7 +256,7 @@ ESTADO
 ==================================================================
 Rama única: ccr-a15b3306-j21m9o
 
-Fase actual: FASE 2 TERMINADA — detenido en CHECKPOINT 2, esperando "OK".
+Fase actual: FASE 3 (style frame) LISTA — detenido en CHECKPOINT 3, esperando aprobación del look.
 
 Equipo (confirmado por el usuario):
 - Es un equipo de Mitos y Leyendas (TCG) llamado "Mylquiades". El formato futsal/Champions es solo la presentación.
@@ -284,9 +284,31 @@ Detalles a tener en cuenta:
 - p5: en ~5 frames alrededor del paso queda un rastro tenue junto al cuello.
 - Encuadres mezclados: p1 entero con pies; p3/p5 cortan en tobillos; p2/p4 plano americano -> usar degradado Noche abajo para todos.
 
+Decisiones del usuario tras Checkpoint 2:
+- Detrás de cada persona va el LOGO del equipo (reemplaza al dorsal gigante). Logo = escudo "TEAM MYLQUIADES TCG"
+  (original en assets/raw/escudo_original.jpg; sin fondo en public/brand/escudo.png vía scripts/escudo_alpha.py).
+- La escena E3 (cancha/rombo) se reemplaza por la "alineación": los 5 nombres apareciendo uno a uno en lista plateada estilo transmisión, con la C de capitán junto a Pablo.
+
+Hecho en Fase 3 (style frame de p1):
+- Tokens en src/theme.ts: Noche #06102B, Índigo #12245E, Plata #E7ECF3, Grafito #8C97AB, Hielo #A8DBFF; degradé metálico Plata->Grafito; curva única Easing.bezier(0.16,1,0.3,1).
+- Tipografía: SOLO Lexend Exa (400/700; variable). Big Shoulders se descartó porque ya no hay dorsales.
+  Se carga local desde public/fonts/LexendExa-latin.woff2 (licencia OFL al lado) con FontFace + delayRender:
+  el Chrome del render no confía en el CA del proxy y no puede bajar de fonts.gstatic.com. @remotion/google-fonts queda instalado pero sin uso.
+- src/timing.ts (frames), src/components/{Fondo,Persona,TextoPlata,Capitan}.tsx, src/scenes/Presentacion.tsx, src/Root.tsx con
+  composiciones "Presentacion-Vertical" y "Presentacion-Horizontal" (props pid, logo: "plata"|"color").
+- Encuadre común: cada persona se escala por ancho de cabeza y se alinea por la coronilla (src/data/encuadre.json, scripts/encuadre.py);
+  ajuste fino por persona en src/data/ajustes.json (escudoDx: corre el escudo para que la cara de la mascota quede detrás de la cara de la persona).
+- Escudo detrás: se ubica desde la cabeza de la persona (banda TEAM sobre la cabeza). Por defecto en PLATA (monocromo, oscuro) para no competir con la persona;
+  variante a color disponible (logo:"color"). Propuesta: escudo a color solo en intro y cierre.
+- Texturas precalculadas: public/fx/grano.png y public/fx/humo.png (scripts/fx_textures.py).
+- Render: still ~6-7 s; 105 frames a media escala 30 s.
+- Previews: f3_vertical_paso.jpg, f3_horizontal_paso.jpg, f3_vertical_final.jpg, f3_horizontal_final.jpg, f3_vertical_logo_color.jpg, f3_vertical_animacion.mp4.
+
+Cambios contra "plantilla deportiva genérica": escudo monocromo plata en vez de a todo color; texto que emerge desde una máscara con el tracking
+cerrándose (no fade+slide); una sola familia tipográfica; el único golpe de luz es el paso (contraluz que sigue la silueta + núcleo Hielo).
+
 Pendientes / preguntas abiertas:
-- La escena E3 "Formación" (rombo 1-2-1 con dorsales) choca con "sin posiciones ni dorsales": proponer reemplazo en Fase 3/4 (p. ej. los 5 en fila / "alineación" sin cancha). Preguntar al usuario.
-- El dorsal gigante detrás de cada persona tampoco va: proponer otro elemento de fondo (inicial o apellido gigante). Preguntar.
-- Escudo: ¿se usa el emblema de la imagen "TEAM MYLQUIADES TCG"? Si sí, que suba el PNG; si no, propuesta simple con iniciales en plata.
+- Aprobación del look (escudo plata vs color detrás de la persona).
+- p2..p5 sin rol: bajo la línea no aparece nada (solo Pablo muestra "capitán").
 - Lema y ocasión ([EDITAR]; si quedan vacíos no se muestran). Música.
 - ¿Hay originales sin comprimir (sin WhatsApp)?

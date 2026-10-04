@@ -1,0 +1,8 @@
+{
+  "_nota": "Ajustes finos por persona, en fracciones del ancho de cabeza. escudoDx: corre el escudo a lo ancho para que la cara de la mascota quede detrás de la cara de la persona.",
+  "p1": { "escudoDx": -0.25 },
+  "p2": { "escudoDx": 0 },
+  "p3": { "escudoDx": 0 },
+  "p4": { "escudoDx": 0 },
+  "p5": { "escudoDx": 0 }
+}
