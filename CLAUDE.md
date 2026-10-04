@@ -256,7 +256,7 @@ ESTADO
 ==================================================================
 Rama única: ccr-a15b3306-j21m9o
 
-Fase actual: FASE 4 — ajustes post-Checkpoint 4 aplicados; esperando "OK" para Fase 5.
+Fase actual: FASE 4 — ajustes de Benjamín aplicados (3ª ronda); esperando "OK" para Fase 5.
 
 Equipo (confirmado por el usuario):
 - Es un equipo de Mitos y Leyendas (TCG) llamado "Mylquiades". El formato futsal/Champions es solo la presentación.
@@ -336,6 +336,12 @@ Segunda ronda de ajustes:
   GitHub releases no) -> scripts/bajar_modelos_ia.sh a assets/work/modelos_ia/ (no van a git: GFPGAN pesa 340 MB).
   ~18,5 s por frame en CPU. Pipeline: scripts/rehacer_con_ia.sh pN ratio k (mejorar -> matte -> cleanup -> encuadre -> encode).
   Aplicado solo a p3 por ahora. Ofrecer al usuario aplicarlo a los otros 4 para que queden parejos (~25-30 min c/u).
+
+Tercera ronda (Benjamín "manos mal puestas, se ve feo"):
+- El corte 12,1-13,6 congelaba un frame a mitad del cruce de brazos (mano asomando) ~2 s.
+- Nuevo corte: intento 6,3-8,9 s (paso a 7,2 s, paso_frame 27; brazos bien cruzados y manos guardadas desde 7,5 s), 78 frames; se congela <1 s.
+- Rehecho con IA (mejorar.py ahora guarda cada frame en assets/work/ia/<pid>_<corte>/ y retoma si la VM se reinicia).
+- Previews: previews/benjamin_nuevo.jpg, prueba_benjamin_figueroa_9x16.mp4, f4_quinteto_*.mp4 actualizados.
 
 Pendientes / preguntas abiertas:
 - Música (opcional).
