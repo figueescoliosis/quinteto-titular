@@ -36,19 +36,19 @@
  "p3": {
   "frames": 45,
   "union": [
-   258,
-   648,
+   260,
+   652,
    821,
    1919
   ],
   "final": [
    339,
-   648,
+   652,
    817,
    1919
   ],
-  "cabeza_cx": 581,
-  "cabeza_ancho": 156
+  "cabeza_cx": 578,
+  "cabeza_ancho": 163
  },
  "p4": {
   "frames": 90,

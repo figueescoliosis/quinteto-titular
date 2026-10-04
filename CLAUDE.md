@@ -328,6 +328,15 @@ Ajustes pedidos tras Checkpoint 4 (aplicados):
 - Se quitó la C de capitán (insignia) en todo el video; Pablo conserva el texto "capitán" bajo su línea.
 - Videos de prueba: previews/prueba_felipe_arias_9x16.mp4, prueba_felipe_arias_16x9.mp4, prueba_benjamin_figueroa_9x16.mp4 (scripts/render_pruebas.sh).
 
+Segunda ronda de ajustes:
+- Lema y ocasión: el usuario dice "nada" -> team.json con "" (no se muestran).
+- Benjamín se veía pixeleado (la fuente de WhatsApp es blanda y con bloques; el recorte no agrega pérdida).
+  Mejora con IA en scripts/mejorar.py: Real-ESRGAN x2 en la zona de la persona + GFPGAN 1.4 en la cara (alineada con YOLOface,
+  puntos suavizados entre frames, mezcla 0,7). Modelos ONNX desde huggingface.co/facefusion/models-3.0.0 (HF accesible desde la VM;
+  GitHub releases no) -> scripts/bajar_modelos_ia.sh a assets/work/modelos_ia/ (no van a git: GFPGAN pesa 340 MB).
+  ~18,5 s por frame en CPU. Pipeline: scripts/rehacer_con_ia.sh pN ratio k (mejorar -> matte -> cleanup -> encuadre -> encode).
+  Aplicado solo a p3 por ahora. Ofrecer al usuario aplicarlo a los otros 4 para que queden parejos (~25-30 min c/u).
+
 Pendientes / preguntas abiertas:
-- Lema y ocasión ([EDITAR]; si quedan vacíos no se muestran). Música.
+- Música (opcional).
 - ¿Hay originales sin comprimir (sin WhatsApp)?
