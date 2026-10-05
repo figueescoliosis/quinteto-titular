@@ -256,7 +256,7 @@ ESTADO
 ==================================================================
 Rama única: ccr-a15b3306-j21m9o
 
-Fase actual: FASE 4 — 4ª ronda de ajustes aplicada; esperando "OK" para Fase 5.
+Fase actual: FASE 4 — 5ª ronda aplicada (Benjamín versión original acortada); esperando "OK" para Fase 5.
 
 Equipo (confirmado por el usuario):
 - Es un equipo de Mitos y Leyendas (TCG) llamado "Mylquiades". El formato futsal/Champions es solo la presentación.
@@ -350,6 +350,11 @@ Cuarta ronda (comentarios del grupo, decididos por el usuario):
 - Benjamín: línea chica "BenjaMyL" (team.json "nombre_mostrado"); su clip termina antes: 6,3-8,13 s (55 frames; se cortó antes de que gire la cabeza, recortando frames ya mejorados, sin reprocesar).
 - Alonso: reloj plateado fino junto al apellido (team.json "icono": "reloj"; src/components/Reloj.tsx).
 - Helpers en src/data/equipo.ts: lineaNombre(), textoGrande(), icono(); usados en Presentación y Alineación.
+
+Quinta ronda:
+- Benjamín vuelve a su PRIMERA versión (corte original, sin IA) pero terminando antes: 12,25-14,20 s (59 frames, paso_frame 39; termina con brazos cruzados).
+- La versión con IA (6,3-8,13 s) quedó guardada como video aparte: previews/benjamin_version_ia.mp4.
+- La mejora con IA queda disponible (scripts/mejorar.py) pero NO se usa en el video actual.
 
 Pendientes / preguntas abiertas:
 - Música (opcional).

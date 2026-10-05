@@ -15,12 +15,12 @@
       "duracion": 16.24,
       "encuadre": "casi entero (corta en tobillos)",
       "corte": [
-        6.3,
-        8.13
+        12.25,
+        14.2
       ],
-      "paso_s": 7.2,
-      "paso_frame": 27,
-      "nota": "Intento 6,3-8,13 s (termina antes de que gire la cabeza), paso 7,2 s; mejorado con IA."
+      "paso_s": 13.55,
+      "paso_frame": 39,
+      "nota": "Vuelta a la primera versión (sin IA) a pedido del usuario, terminando antes: 12,25-14,20 s."
     },
     "VID-20261004-WA0089.mp4": {
       "duracion": 21.48,
