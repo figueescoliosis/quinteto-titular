@@ -390,6 +390,12 @@ Novena ronda ("el recorte de fondo se ve raro"):
   Cierre: drop-shadow 0,55 -> 0,18 y más difuso. Comparación: previews/borde_antes_despues.jpg.
 - Re-render: out/quinteto_9x16.mp4 (26,6 MB), out/quinteto_16x9.mp4 (22,6 MB), portadas, out/instagram/ y prueba de Benjamín.
 
+Décima ronda ("calidad máxima que acepte Instagram"):
+- scripts/instagram.sh: reels con Remotion CRF 10 (env CRF_IG), --x264-preset=slow, --color-space=bt709; luego ffmpeg agrega AAC 48 kHz
+  silencioso + faststart (video copiado sin recomprimir). ~19,5 Mbps. 00_equipo_reel.mp4 ahora se renderiza aparte (69 MB) en vez de copiar out/quinteto_9x16.mp4.
+- Fotos JPEG calidad 100, croma 4:4:4, 1080x1350.
+- LEEME.md: specs + activar "Subir con la máxima calidad" en Instagram.
+
 Pendientes / preguntas abiertas:
 - Música (opcional).
 - ¿Hay originales sin comprimir (sin WhatsApp)?

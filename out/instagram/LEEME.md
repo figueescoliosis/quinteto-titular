@@ -12,6 +12,16 @@ Todos los archivos están en esta carpeta (`out/instagram/`).
 | 4 | Vladi | `04_vladi_reel.mp4` | `04_vladi_foto.jpg` |
 | 5 | Alonso Medina | `05_alonso_medina_reel.mp4` | `05_alonso_medina_foto.jpg` |
 
+## Calidad
+
+Exportados a la calidad máxima útil para Instagram (Instagram muestra hasta 1080 px de ancho y recomprime todo):
+- Reels: 1080x1920, 30 fps, H.264 High, color BT.709, ~20 Mbps, pista de audio AAC en silencio, "faststart".
+- Fotos: 1080x1350 (4:5), JPEG calidad 100 con color completo (4:4:4).
+
+**Importante:** antes de subir, en Instagram activa
+*Configuración → Uso de datos y calidad multimedia → Subir con la máxima calidad*.
+Sin eso, la app baja la calidad al subir con datos móviles. Mejor subirlas con Wi-Fi.
+
 ## Cómo subirlas
 
 - **Reel:** Instagram → + → Reel → elegir el `_reel.mp4`. Los videos no traen música:
