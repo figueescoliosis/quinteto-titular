@@ -256,7 +256,7 @@ ESTADO
 ==================================================================
 Rama única: ccr-a15b3306-j21m9o
 
-Fase actual: FASE 4 — ajustes de Benjamín aplicados (3ª ronda); esperando "OK" para Fase 5.
+Fase actual: FASE 4 — 4ª ronda de ajustes aplicada; esperando "OK" para Fase 5.
 
 Equipo (confirmado por el usuario):
 - Es un equipo de Mitos y Leyendas (TCG) llamado "Mylquiades". El formato futsal/Champions es solo la presentación.
@@ -342,6 +342,14 @@ Tercera ronda (Benjamín "manos mal puestas, se ve feo"):
 - Nuevo corte: intento 6,3-8,9 s (paso a 7,2 s, paso_frame 27; brazos bien cruzados y manos guardadas desde 7,5 s), 78 frames; se congela <1 s.
 - Rehecho con IA (mejorar.py ahora guarda cada frame en assets/work/ia/<pid>_<corte>/ y retoma si la VM se reinicia).
 - Previews: previews/benjamin_nuevo.jpg, prueba_benjamin_figueroa_9x16.mp4, f4_quinteto_*.mp4 actualizados.
+
+Cuarta ronda (comentarios del grupo, decididos por el usuario):
+- Título de la intro: "EQUIPO TITULAR" (antes "QUINTETO TITULAR").
+- Vladi: aparece solo como "VLADI" (team.json "solo": "Vladi"; sin línea de nombre ni apellido). No quiere estrella.
+- Felipe: línea chica 'Felipe “Macizo”' (team.json "apodo").
+- Benjamín: línea chica "BenjaMyL" (team.json "nombre_mostrado"); su clip termina antes: 6,3-8,13 s (55 frames; se cortó antes de que gire la cabeza, recortando frames ya mejorados, sin reprocesar).
+- Alonso: reloj plateado fino junto al apellido (team.json "icono": "reloj"; src/components/Reloj.tsx).
+- Helpers en src/data/equipo.ts: lineaNombre(), textoGrande(), icono(); usados en Presentación y Alineación.
 
 Pendientes / preguntas abiertas:
 - Música (opcional).

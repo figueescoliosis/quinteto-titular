@@ -1,6 +1,8 @@
 import React from "react";
 import { AbsoluteFill, Img, interpolate, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import team from "../data/team.json";
+import { icono, lineaNombre, textoGrande } from "../data/equipo";
+import { Reloj } from "../components/Reloj";
 import { Fondo, Grano, Vineta } from "../components/Fondo";
 import { Persona, colocar, type Colocacion } from "../components/Persona";
 import { LineaPlata, TextoPlata } from "../components/TextoPlata";
@@ -38,7 +40,7 @@ export const Presentacion: React.FC<{ pid: string; logo: TratamientoLogo; standa
   // Centrado en la columna de la persona (centro del lienzo en vertical, tercio izquierdo en horizontal).
   const logoCx = col.cabezaCx;
   const textoMaxW = vertical ? width - 120 : width * 0.44;
-  const apellido = j.apellido.toUpperCase();
+  const apellido = textoGrande(j);
   const apellidoSize = Math.min(vertical ? 150 : 170, textoMaxW / (apellido.length * EM_POR_LETRA));
 
   // --- Tiempos ---
@@ -51,6 +53,7 @@ export const Presentacion: React.FC<{ pid: string; logo: TratamientoLogo; standa
   const nombreP = interpolate(frame, [t0, t0 + 14], [0, 1], { ...clamp, easing: CURVA });
   const apellidoP = interpolate(frame, [t0 + 3, t0 + 19], [0, 1], { ...clamp, easing: CURVA });
   const brillo = interpolate(frame, [t0 + 8, t0 + 30], [0, 1], clamp);
+  const iconoP = interpolate(frame, [t0 + 10, t0 + 30], [0, 1], clamp);
   const lineaP = interpolate(frame, [t0 + 8, t0 + 24], [0, 1], { ...clamp, easing: CURVA });
   const rolP = interpolate(frame, [t0 + 12, t0 + 26], [0, 1], { ...clamp, easing: CURVA });
   const camara = interpolate(frame, [0, 105], [1, 1.04], clamp);
@@ -82,7 +85,7 @@ export const Presentacion: React.FC<{ pid: string; logo: TratamientoLogo; standa
       }}
     >
       <div style={{ fontSize: vertical ? 54 : 54, fontWeight: 400, color: COLOR.plata, letterSpacing: "0.04em", ...revelar(nombreP) }}>
-        {j.nombre}
+        {lineaNombre(j) || "\u00a0"}
       </div>
       <div
         style={{
@@ -105,6 +108,7 @@ export const Presentacion: React.FC<{ pid: string; logo: TratamientoLogo; standa
         >
           <TextoPlata brillo={brillo}>{apellido}</TextoPlata>
         </div>
+        {icono(j) === "reloj" ? <Reloj size={apellidoSize * 0.78} progreso={iconoP} /> : null}
       </div>
       <div style={{ marginTop: vertical ? 26 : 22 }}>
         <LineaPlata progreso={lineaP} ancho={vertical ? 560 : 640} origen={vertical ? "centro" : "izquierda"} />

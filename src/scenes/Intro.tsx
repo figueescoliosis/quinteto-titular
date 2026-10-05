@@ -7,7 +7,7 @@ import { COLOR, CURVA, LEXEND, clamp } from "../theme";
 const ESCUDO_RATIO = 889 / 721;
 
 // E1: estrellas que convergen al centro en un destello, aparece el escudo (a color) y luego
-// "QUINTETO TITULAR" en plata con su barrido. Debajo, nombre del equipo y ocasión (si existen).
+// "EQUIPO TITULAR" en plata con su barrido. Debajo, nombre del equipo y ocasión (si existen).
 export const Intro: React.FC = () => {
   const frame = useCurrentFrame();
   const { width, height } = useVideoConfig();
@@ -121,12 +121,12 @@ export const Intro: React.FC = () => {
           <TextoPlata brillo={brillo}>
             {vertical ? (
               <>
-                QUINTETO
+                EQUIPO
                 <br />
                 TITULAR
               </>
             ) : (
-              "QUINTETO TITULAR"
+              "EQUIPO TITULAR"
             )}
           </TextoPlata>
         </div>

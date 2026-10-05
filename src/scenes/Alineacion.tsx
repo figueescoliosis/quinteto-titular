@@ -1,6 +1,7 @@
 import React from "react";
 import { AbsoluteFill, Img, interpolate, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
-import { EQUIPO, ORDEN, visible } from "../data/equipo";
+import { EQUIPO, ORDEN, icono, lineaNombre, textoGrande, visible } from "../data/equipo";
+import { Reloj } from "../components/Reloj";
 import { Retrato } from "../components/Retrato";
 import { LineaPlata, TextoPlata } from "../components/TextoPlata";
 import { COLOR, CURVA, LEXEND, clamp } from "../theme";
@@ -78,17 +79,18 @@ export const Alineacion: React.FC = () => {
         <div style={{ position: "absolute", left: 120, right: 120, top: 560, display: "flex", flexDirection: "column" }}>
           {items.map(({ j, anillo, foto, texto, brillo, linea }, i) => {
             const size = 170;
-            const apSize = Math.min(78, 600 / (j.apellido.length * 1.12));
+            const apSize = Math.min(78, 600 / (textoGrande(j).length * 1.12));
             return (
               <div key={j.id}>
                 <div style={{ display: "flex", alignItems: "center", gap: 44, height: 222 }}>
                   <Retrato pid={j.id} size={size} anillo={anillo} foto={foto} />
                   <div style={{ display: "flex", flexDirection: "column" }}>
-                    <div style={{ fontSize: 36, color: COLOR.plata, letterSpacing: "0.04em", ...revelar(texto) }}>{j.nombre}</div>
+                    <div style={{ fontSize: 36, color: COLOR.plata, letterSpacing: "0.04em", ...revelar(texto) }}>{lineaNombre(j) || "\u00a0"}</div>
                     <div style={{ display: "flex", alignItems: "center", gap: 22, marginTop: 4 }}>
                       <div style={{ fontSize: apSize, fontWeight: 700, letterSpacing: "0.12em", lineHeight: 1.1, ...revelar(texto) }}>
-                        <TextoPlata brillo={brillo}>{j.apellido.toUpperCase()}</TextoPlata>
+                        <TextoPlata brillo={brillo}>{textoGrande(j)}</TextoPlata>
                       </div>
+                      {icono(j) === "reloj" ? <Reloj size={apSize * 0.8} progreso={linea} /> : null}
                     </div>
                   </div>
                 </div>
@@ -108,17 +110,18 @@ export const Alineacion: React.FC = () => {
             justifyContent: "space-between",
           }}
         >
-          {items.map(({ j, anillo, foto, texto, brillo }) => {
+          {items.map(({ j, anillo, foto, texto, brillo, linea }) => {
             const size = 230;
-            const apSize = Math.min(54, 330 / (j.apellido.length * 1.12));
+            const apSize = Math.min(54, 330 / (textoGrande(j).length * 1.12));
             return (
               <div key={j.id} style={{ width: 340, display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
                 <Retrato pid={j.id} size={size} anillo={anillo} foto={foto} />
-                <div style={{ marginTop: 34, fontSize: 30, color: COLOR.plata, letterSpacing: "0.04em", ...revelar(texto) }}>{j.nombre}</div>
+                <div style={{ marginTop: 34, fontSize: 30, color: COLOR.plata, letterSpacing: "0.04em", ...revelar(texto) }}>{lineaNombre(j) || "\u00a0"}</div>
                 <div style={{ display: "flex", alignItems: "center", gap: 14, marginTop: 6 }}>
                   <div style={{ fontSize: apSize, fontWeight: 700, letterSpacing: "0.12em", marginRight: "-0.12em", lineHeight: 1.1, ...revelar(texto) }}>
-                    <TextoPlata brillo={brillo}>{j.apellido.toUpperCase()}</TextoPlata>
+                    <TextoPlata brillo={brillo}>{textoGrande(j)}</TextoPlata>
                   </div>
+                  {icono(j) === "reloj" ? <Reloj size={apSize * 0.8} progreso={linea} /> : null}
                 </div>
               </div>
             );
