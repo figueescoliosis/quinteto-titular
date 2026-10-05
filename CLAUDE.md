@@ -256,7 +256,7 @@ ESTADO
 ==================================================================
 Rama única: ccr-a15b3306-j21m9o
 
-Fase actual: FASE 4 — 6ª ronda aplicada (Benjamín con WA0257); esperando "OK" para Fase 5.
+Fase actual: FASE 5 TERMINADA — entregado (CHECKPOINT FINAL).
 
 Equipo (confirmado por el usuario):
 - Es un equipo de Mitos y Leyendas (TCG) llamado "Mylquiades". El formato futsal/Champions es solo la presentación.
@@ -360,6 +360,12 @@ Sexta ronda:
 - Benjamín pidió usar el video que mandó: assets/raw/VID-20261004-WA0257.mp4 (1,79 s, 464x832, mismo intento que WA0088 ~12-13,8 s).
   p3: clip WA0257, corte 0-1,79 s completo, paso 0,9 s (paso_frame 27), 54 frames; se congela el resto del tramo. Sin IA.
   Ojos entrecerrados y reflejo de lentes siguen (es la misma toma); el usuario decidió usarlo así.
+
+Hecho en Fase 5:
+- npm run check (scripts/check.mjs): team.json sin "[EDITAR" y 20 archivos presentes; música opcional (no hay -> sin audio).
+- scripts/render_final.sh: out/quinteto_9x16.mp4 (1080x1920, 30 s, 900 fr, 25,2 MB) y out/quinteto_16x9.mp4 (1920x1080, 30 s, 900 fr, 21,3 MB),
+  H.264 CRF 18 (ambos < 50 MB, no hizo falta subir CRF). Portadas out/portada_9x16.png y out/portada_16x9.png (frame 850 del cierre).
+- Render completo: ~5 min por formato con --concurrency=4.
 
 Pendientes / preguntas abiertas:
 - Música (opcional).
