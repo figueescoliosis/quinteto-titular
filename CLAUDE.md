@@ -367,6 +367,15 @@ Hecho en Fase 5:
   H.264 CRF 18 (ambos < 50 MB, no hizo falta subir CRF). Portadas out/portada_9x16.png y out/portada_16x9.png (frame 850 del cierre).
 - Render completo: ~5 min por formato con --concurrency=4.
 
+Séptima ronda (post entrega):
+- Se quitó el reloj de Alonso (team.json sin "icono"; el componente Reloj queda disponible).
+- Personas en tonos cálidos (pedido del equipo): Persona.tsx saturate 0.95 + matriz cálida (R 1.06, B 0.88);
+  Retrato/Cierre con sepia(0.14) saturate(1.05) contrast(1.06). El fondo sigue azul noche/plata.
+- Re-render final: out/quinteto_9x16.mp4 (26,4 MB) y out/quinteto_16x9.mp4 (22,4 MB) + portadas.
+- Instagram (scripts/instagram.sh -> out/instagram/): composición "Reel-Persona" (1080x1920, 5 s) por persona,
+  foto 4:5 (1080x1350) por persona y del equipo (still vertical escalado 0,8 con márgenes Noche), 00_equipo_reel.mp4 = video completo.
+  Textos y orden de publicación en out/instagram/LEEME.md.
+
 Pendientes / preguntas abiertas:
 - Música (opcional).
 - ¿Hay originales sin comprimir (sin WhatsApp)?

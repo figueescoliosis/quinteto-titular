@@ -16,19 +16,19 @@ export const colocar = (pid: string, c: Colocacion) => {
   return { s, left: c.cabezaCx - e.cabeza_cx * s, top: c.cabezaTop - e.final[1] * s, frames: e.frames };
 };
 
-// Filtro leve igual para los 5 (contraste +, saturación -, tono apenas frío) y contraluz Hielo
+// Filtro leve igual para los 5 (contraste +, tono cálido a pedido del equipo) y contraluz Hielo
 // que sigue el alpha. Un solo filtro SVG por persona para no encadenar pasadas.
 const FiltroPersona: React.FC<{ id: string; contraluz: number }> = ({ id, contraluz }) => (
   <svg width={0} height={0} style={{ position: "absolute" }}>
     <filter id={id} x="-15%" y="-10%" width="130%" height="120%" colorInterpolationFilters="sRGB">
-      <feColorMatrix type="saturate" values="0.8" result="sat" />
+      <feColorMatrix type="saturate" values="0.95" result="sat" />
       <feColorMatrix
         in="sat"
         type="matrix"
-        values="0.96 0 0 0 0  0 0.99 0 0 0.005  0 0 1.05 0 0.015  0 0 0 1 0"
-        result="frio"
+        values="1.06 0 0 0 0.012  0 1.0 0 0 0.004  0 0 0.88 0 0  0 0 0 1 0"
+        result="calido"
       />
-      <feComponentTransfer in="frio" result="cont">
+      <feComponentTransfer in="calido" result="cont">
         <feFuncR type="linear" slope="1.1" intercept="-0.045" />
         <feFuncG type="linear" slope="1.1" intercept="-0.045" />
         <feFuncB type="linear" slope="1.1" intercept="-0.045" />
