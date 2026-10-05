@@ -7,7 +7,7 @@ Uso: mejorar.py pN [--frames N] [--prueba]
   Escribe assets/work/norm/pN_raw.mp4 (1080x1920, 30 fps) y pN.mp4 (con la ganancia de color de
   scripts/ganancias.json). Con --prueba solo procesa un frame y guarda una comparación en assets/work/ia/.
 Modelos: scripts/bajar_modelos_ia.sh -> assets/work/modelos_ia/"""
-import json, subprocess, sys, time
+import json, os, subprocess, sys, time
 from pathlib import Path
 import numpy as np, cv2, onnxruntime as ort
 
@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parent.parent
 M = ROOT / "assets/work/modelos_ia"
 pid = sys.argv[1]
 PRUEBA = "--prueba" in sys.argv
-MEZCLA_ROSTRO = 0.7  # cuánto de GFPGAN entra en la cara (1 = todo)
+MEZCLA_ROSTRO = float(os.environ.get("MEZCLA_ROSTRO", "0.7"))  # cuánto de GFPGAN entra en la cara (1 = todo)
 
 team = json.loads((ROOT / "src/data/team.json").read_text())
 j = next(x for x in team["jugadores"] if x["id"] == pid)

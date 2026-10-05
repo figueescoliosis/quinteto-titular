@@ -7,7 +7,7 @@ NOCHE=06102B
 for pid in ${@:-p1 p2 p3 p4 p5}; do
   d=assets/work/alpha_clean/$pid
   ffmpeg -v error -y -framerate 30 -i $d/%04d.png -c:v libvpx-vp9 -pix_fmt yuva420p \
-    -b:v 0 -crf 26 -row-mt 1 -deadline good -cpu-used 2 -auto-alt-ref 0 public/alpha/$pid.webm || exit 1
+    -b:v 0 -crf ${CRF:-26} -row-mt 1 -deadline good -cpu-used 2 -auto-alt-ref 0 public/alpha/$pid.webm || exit 1
   cp "$(ls $d/*.png | tail -1)" public/alpha/${pid}_final.png
   pf=$(python3 -c "import json;print([j for j in json.load(open('src/data/team.json'))['jugadores'] if j['id']=='$pid'][0]['paso_frame'])")
   f=$(printf "%s/%04d.png" $d $pf)

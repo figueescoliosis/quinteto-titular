@@ -376,6 +376,14 @@ Séptima ronda (post entrega):
   foto 4:5 (1080x1350) por persona y del equipo (still vertical escalado 0,8 con márgenes Noche), 00_equipo_reel.mp4 = video completo.
   Textos y orden de publicación en out/instagram/LEEME.md.
 
+Octava ronda (Benjamín "se ve pixeleado", "usa solo el clip que dije"):
+- WA0257 (464x832) resultó ser una copia recortada/achicada de WA0088 12,717-14,507 s (alineado cuadro a cuadro, diff media 3/255).
+- Se usa EXACTAMENTE ese mismo tramo, pero desde WA0088 (720x1280, ~2,4x más píxeles): p3 clip WA0088, corte [12.7167, 14.5067], paso_frame 27, 54 frames.
+- Mejorado con IA (scripts/mejorar.py, Real-ESRGAN x2 + GFPGAN mezcla 0,7; probado 0/0,5/0,8: identidad conservada).
+  MEZCLA_ROSTRO configurable por env. encode_alpha.sh acepta CRF por env (p3 a CRF 20 para no perder detalle).
+- Re-render: out/quinteto_9x16.mp4 (26,6 MB), out/quinteto_16x9.mp4 (22,5 MB), portadas y todo out/instagram/.
+- Previews: previews/benjamin_antes_despues.jpg (WA0257 vs WA0088+IA) y prueba_benjamin_figueroa_9x16.mp4.
+
 Pendientes / preguntas abiertas:
 - Música (opcional).
 - ¿Hay originales sin comprimir (sin WhatsApp)?

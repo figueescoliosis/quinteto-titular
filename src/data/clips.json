@@ -15,12 +15,12 @@
       "duracion": 16.24,
       "encuadre": "casi entero (corta en tobillos)",
       "corte": [
-        12.25,
-        14.2
+        12.7167,
+        14.5067
       ],
-      "paso_s": 13.55,
-      "paso_frame": 39,
-      "nota": "Vuelta a la primera versión (sin IA) a pedido del usuario, terminando antes: 12,25-14,20 s."
+      "paso_s": 13.62,
+      "paso_frame": 27,
+      "nota": "Mismo tramo que WA0257 (el clip elegido por el usuario), alineado cuadro a cuadro: WA0257 = WA0088 12,717-14,507 s, pero en 720x1280 en vez de 464x832. Mejorado con IA."
     },
     "VID-20261004-WA0089.mp4": {
       "duracion": 21.48,
@@ -61,7 +61,7 @@
       ],
       "paso_s": 0.9,
       "paso_frame": 27,
-      "nota": "Clip que el usuario pidió usar para Benjamín (mismo intento que WA0088 12-13,8 s)."
+      "nota": "Copia recortada y achicada (464x832) de WA0088 12,717-14,507 s. Se usa ese mismo tramo desde WA0088 por resolución."
     }
   }
 }
