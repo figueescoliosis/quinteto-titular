@@ -256,7 +256,7 @@ ESTADO
 ==================================================================
 Rama única: ccr-a15b3306-j21m9o
 
-Fase actual: FASE 4 — 5ª ronda aplicada (Benjamín versión original acortada); esperando "OK" para Fase 5.
+Fase actual: FASE 4 — 6ª ronda aplicada (Benjamín con WA0257); esperando "OK" para Fase 5.
 
 Equipo (confirmado por el usuario):
 - Es un equipo de Mitos y Leyendas (TCG) llamado "Mylquiades". El formato futsal/Champions es solo la presentación.
@@ -355,6 +355,11 @@ Quinta ronda:
 - Benjamín vuelve a su PRIMERA versión (corte original, sin IA) pero terminando antes: 12,25-14,20 s (59 frames, paso_frame 39; termina con brazos cruzados).
 - La versión con IA (6,3-8,13 s) quedó guardada como video aparte: previews/benjamin_version_ia.mp4.
 - La mejora con IA queda disponible (scripts/mejorar.py) pero NO se usa en el video actual.
+
+Sexta ronda:
+- Benjamín pidió usar el video que mandó: assets/raw/VID-20261004-WA0257.mp4 (1,79 s, 464x832, mismo intento que WA0088 ~12-13,8 s).
+  p3: clip WA0257, corte 0-1,79 s completo, paso 0,9 s (paso_frame 27), 54 frames; se congela el resto del tramo. Sin IA.
+  Ojos entrecerrados y reflejo de lentes siguen (es la misma toma); el usuario decidió usarlo así.
 
 Pendientes / preguntas abiertas:
 - Música (opcional).

@@ -46,12 +46,12 @@
       "posicion": null,
       "capitan": false,
       "rol": "",
-      "clip": "VID-20261004-WA0088.mp4",
+      "clip": "VID-20261004-WA0257.mp4",
       "corte": [
-        12.25,
-        14.2
+        0.0,
+        1.79
       ],
-      "paso_frame": 39,
+      "paso_frame": 27,
       "nombre_mostrado": "BenjaMyL"
     },
     {

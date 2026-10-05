@@ -34,21 +34,21 @@
   "cabeza_ancho": 171
  },
  "p3": {
-  "frames": 59,
+  "frames": 54,
   "union": [
-   258,
-   639,
-   827,
+   264,
+   635,
+   830,
    1919
   ],
   "final": [
-   297,
-   639,
-   804,
+   294,
+   635,
+   795,
    1919
   ],
-  "cabeza_cx": 541,
-  "cabeza_ancho": 171
+  "cabeza_cx": 522,
+  "cabeza_ancho": 175
  },
  "p4": {
   "frames": 90,

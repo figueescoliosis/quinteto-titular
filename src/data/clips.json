@@ -51,6 +51,17 @@
       ],
       "paso_s": 5.78,
       "paso_frame": 27
+    },
+    "VID-20261004-WA0257.mp4": {
+      "duracion": 1.79,
+      "encuadre": "casi entero (464x832, enviado por el usuario)",
+      "corte": [
+        0.0,
+        1.79
+      ],
+      "paso_s": 0.9,
+      "paso_frame": 27,
+      "nota": "Clip que el usuario pidió usar para Benjamín (mismo intento que WA0088 12-13,8 s)."
     }
   }
 }
