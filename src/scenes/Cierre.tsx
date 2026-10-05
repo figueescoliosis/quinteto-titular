@@ -103,7 +103,7 @@ export const Cierre: React.FC = () => {
                 scale: String(s),
                 transformOrigin: "0 0",
                 opacity: p,
-                filter: `sepia(0.14) saturate(1.05) contrast(1.06) brightness(${sombra * (1 + (1 - p) * 1.5)}) drop-shadow(0 0 ${12 / s}px rgba(168,219,255,0.55))`,
+                filter: `sepia(0.14) saturate(1.05) contrast(1.06) brightness(${sombra * (1 + (1 - p) * 1.5)}) drop-shadow(0 0 ${24 / s}px rgba(168,219,255,0.18))`,
               }}
             />
           );

@@ -384,6 +384,12 @@ Octava ronda (Benjamín "se ve pixeleado", "usa solo el clip que dije"):
 - Re-render: out/quinteto_9x16.mp4 (26,6 MB), out/quinteto_16x9.mp4 (22,5 MB), portadas y todo out/instagram/.
 - Previews: previews/benjamin_antes_despues.jpg (WA0257 vs WA0088+IA) y prueba_benjamin_figueroa_9x16.mp4.
 
+Novena ronda ("el recorte de fondo se ve raro"):
+- Causa: el contraluz Hielo (drop-shadow que sigue el alpha) quedaba siempre al 35 % con blur chico -> contorno azul tipo "sticker",
+  más notorio con los tonos cálidos. Ahora: blur 22-36 (difuso) y opacidad 0,08 + 0,5*destello² (solo fuerte en el paso).
+  Cierre: drop-shadow 0,55 -> 0,18 y más difuso. Comparación: previews/borde_antes_despues.jpg.
+- Re-render: out/quinteto_9x16.mp4 (26,6 MB), out/quinteto_16x9.mp4 (22,6 MB), portadas, out/instagram/ y prueba de Benjamín.
+
 Pendientes / preguntas abiertas:
 - Música (opcional).
 - ¿Hay originales sin comprimir (sin WhatsApp)?

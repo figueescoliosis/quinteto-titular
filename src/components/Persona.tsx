@@ -33,8 +33,8 @@ const FiltroPersona: React.FC<{ id: string; contraluz: number }> = ({ id, contra
         <feFuncG type="linear" slope="1.1" intercept="-0.045" />
         <feFuncB type="linear" slope="1.1" intercept="-0.045" />
       </feComponentTransfer>
-      <feGaussianBlur in="SourceAlpha" stdDeviation={10 + 8 * contraluz} result="blur" />
-      <feFlood floodColor={COLOR.hielo} floodOpacity={0.35 + 0.65 * contraluz} />
+      <feGaussianBlur in="SourceAlpha" stdDeviation={22 + 14 * contraluz} result="blur" />
+      <feFlood floodColor={COLOR.hielo} floodOpacity={0.08 + 0.5 * contraluz * contraluz} />
       <feComposite in2="blur" operator="in" result="glow" />
       <feMerge>
         <feMergeNode in="glow" />
