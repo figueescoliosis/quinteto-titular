@@ -3,31 +3,31 @@
   "frames": 90,
   "union": [
    296,
-   533,
-   802,
-   1875
+   534,
+   804,
+   1874
   ],
   "final": [
-   354,
+   353,
    657,
-   776,
-   1873
+   779,
+   1868
   ],
-  "cabeza_cx": 650,
-  "cabeza_ancho": 125
+  "cabeza_cx": 651,
+  "cabeza_ancho": 121
  },
  "p2": {
   "frames": 86,
   "union": [
    74,
    600,
-   980,
+   981,
    1919
   ],
   "final": [
-   293,
+   294,
    603,
-   885,
+   887,
    1919
   ],
   "cabeza_cx": 555,
@@ -36,52 +36,52 @@
  "p3": {
   "frames": 54,
   "union": [
-   259,
+   258,
    636,
    827,
    1919
   ],
   "final": [
-   292,
+   293,
    636,
    792,
    1919
   ],
   "cabeza_cx": 521,
-  "cabeza_ancho": 173
+  "cabeza_ancho": 177
  },
  "p4": {
   "frames": 90,
   "union": [
    213,
-   644,
+   631,
    804,
    1919
   ],
   "final": [
-   257,
-   686,
+   254,
+   694,
    772,
    1919
   ],
-  "cabeza_cx": 494,
-  "cabeza_ancho": 166
+  "cabeza_cx": 492,
+  "cabeza_ancho": 170
  },
  "p5": {
   "frames": 99,
   "union": [
-   227,
-   710,
+   217,
+   707,
    801,
    1919
   ],
   "final": [
    244,
-   730,
-   641,
+   734,
+   640,
    1919
   ],
-  "cabeza_cx": 419,
-  "cabeza_ancho": 132
+  "cabeza_cx": 422,
+  "cabeza_ancho": 134
  }
 }

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Fase 2.4: limpieza del alpha de RVM.
+"""Fase 2.4: limpieza del alpha (BiRefNet, antes RVM).
+- Rellena huecos falsos de BiRefNet donde RVM ve persona (assets/work/alpha_png_rvm).
 - Quita restos finos fuera de la silueta (rendijas oscuras del barril junto a la cabeza):
   apertura morfológica + componente más grande, y se multiplica el alpha por esa máscara suave.
 - Halo de 1 px: erosión de 1 px y feather suave.
@@ -18,11 +19,31 @@ for f in dst.glob("*.png"): f.unlink()
 KO = int(sys.argv[2]) if len(sys.argv) > 2 else 15
 K_OPEN = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (KO, KO))
 K3 = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (3, 3))
+HUECO_MAX = 8000  # px: huecos más grandes son siempre reales
+rvm = ROOT / "assets/work/alpha_png_rvm" / pid  # recorte RVM previo, segunda opinión
 
 for f in sorted(src.glob("*.png")):
     im = cv2.imread(str(f), cv2.IMREAD_UNCHANGED)
     rgb = im[:, :, :3].astype(np.float32)
     a = im[:, :, 3].astype(np.float32) / 255
+
+    # 0) huecos falsos: BiRefNet a veces toma por fondo tela negra (cuello de polera) o una mano
+    #    entre los brazos. En cada hueco cerrado por la silueta se consulta a RVM (alpha_png_rvm):
+    #    donde RVM ve persona, se usa su alpha. Los huecos reales (entre brazo y cuerpo, entre
+    #    piernas) los dos los ven como fondo y se respetan.
+    rvm_f = rvm / f.name
+    if rvm_f.exists():
+        ar = cv2.imread(str(rvm_f), cv2.IMREAD_UNCHANGED)[:, :, 3].astype(np.float32) / 255
+        n, lab, st, _ = cv2.connectedComponentsWithStats((a < 0.5).astype(np.uint8), 4)
+        H, W = a.shape
+        for k in range(1, n):
+            x, y, w, h, area = st[k]
+            if x == 0 or y == 0 or x + w >= W or y + h >= H or area > HUECO_MAX:
+                continue
+            m = cv2.dilate((lab == k).astype(np.uint8), K3, iterations=3) > 0
+            if ar[lab == k].mean() > 0.5:
+                a[m] = np.maximum(a[m], ar[m])
+                print(f"  {f.stem}: hueco relleno con RVM {area} px en ({x},{y})")
 
     # 1) silueta robusta: umbral, apertura, componente más grande
     hard = (a > 0.5).astype(np.uint8)

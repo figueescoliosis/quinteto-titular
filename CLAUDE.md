@@ -396,6 +396,18 @@ Décima ronda ("calidad máxima que acepte Instagram"):
 - Fotos JPEG calidad 100, croma 4:4:4, 1080x1350.
 - LEEME.md: specs + activar "Subir con la máxima calidad" en Instagram.
 
+Undécima ronda ("los recortes están mal, a veces se ve el fondo"):
+- Causa: RVM (mobilenet) fallaba en el paso: cortaba piernas (zapato flotando en Pablo), pie semitransparente (Alonso),
+  arrastraba la sombra del piso (Pablo) y dejaba trozos de barril/madera junto a cabeza y hombros (Felipe, Benjamín, Vladi, Alonso).
+- Nuevo recorte: BiRefNet lite (ONNX, MIT, huggingface.co/onnx-community/BiRefNet_lite-ONNX -> assets/work/modelos_ia/birefnet_lite.onnx),
+  cuadro a cuadro (~7,5 s/cuadro, ~55 min los 5) con suavizado temporal 1-2-1 solo donde el alpha está quieto: scripts/matte_birefnet.py
+  (cache por cuadro en assets/work/birefnet/pN/). Colores del cuadro normalizado (cleanup.py descontamina bordes).
+- cleanup.py: apertura k=9 para todos; rellena huecos cerrados de BiRefNet donde RVM ve persona (tela negra del cuello de Alonso,
+  mano de Benjamín entre los brazos); el RVM previo queda en assets/work/alpha_png_rvm/ como segunda opinión.
+- Todo encadenado en scripts/rehacer_recortes.sh (matte -> cleanup -> encode (p3 CRF 20) -> encuadre -> render final -> Instagram -> prueba Benjamín).
+- Previews: previews/recortes_antes_despues.jpg.
+- Queda: en Alonso, ~3 cuadros del paso con una astilla de madera entre las piernas (bajo el degradado Noche, casi no se ve).
+
 Pendientes / preguntas abiertas:
 - Música (opcional).
 - ¿Hay originales sin comprimir (sin WhatsApp)?
