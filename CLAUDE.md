@@ -416,6 +416,10 @@ Duodécima ronda ("están muy brillosos, colores normales"):
 - Recortes regenerados (alpha desde el cache de BiRefNet) y re-render de videos, portadas e Instagram.
 - Previews: previews/colores_antes_despues.jpg.
 
+Entrega en zip (pedido "dame todo en un zip"): entrega/Mylquiades_1_videos.zip (videos 9:16 y 16:9 + portadas, 54 MB),
+Mylquiades_2_instagram_equipo.zip (reel y foto del equipo + LEEME, 69 MB), Mylquiades_3_instagram_personas.zip (5 reels y fotos + LEEME, 62 MB).
+Un solo zip pesa 185 MB: no cabe en GitHub (límite 100 MB por archivo) ni en el envío por chat (30 MB). Si se re-renderiza, rehacer los zips.
+
 Pendientes / preguntas abiertas:
 - Música (opcional).
 - ¿Hay originales sin comprimir (sin WhatsApp)?
