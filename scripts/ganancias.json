@@ -1,8 +1,28 @@
 {
-  "_nota": "Ganancias RGB lineales de la igualación (Fase 2). normalize.py las reutiliza al reprocesar un solo clip.",
-  "p1": [1.174, 1.234, 1.221],
-  "p2": [1.009, 1.046, 1.08],
-  "p3": [0.944, 0.922, 0.913],
-  "p4": [0.922, 0.912, 0.92],
-  "p5": [0.97, 0.921, 0.903]
+ "_nota": "Ganancias RGB lineales de la igualación (Fase 2). En 1,0 desde la ronda 12: colores naturales de la grabación (pedido del equipo). Valores medidos originales: p1 1.174/1.234/1.221, p2 1.009/1.046/1.08, p3 0.944/0.922/0.913, p4 0.922/0.912/0.92, p5 0.97/0.921/0.903.",
+ "p1": [
+  1.0,
+  1.0,
+  1.0
+ ],
+ "p2": [
+  1.0,
+  1.0,
+  1.0
+ ],
+ "p3": [
+  1.0,
+  1.0,
+  1.0
+ ],
+ "p4": [
+  1.0,
+  1.0,
+  1.0
+ ],
+ "p5": [
+  1.0,
+  1.0,
+  1.0
+ ]
 }

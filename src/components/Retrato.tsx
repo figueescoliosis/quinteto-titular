@@ -37,7 +37,7 @@ export const Retrato: React.FC<{ pid: string; size: number; anillo: number; foto
             width: 1080 * k,
             height: 1920 * k,
             maxWidth: "none",
-            filter: "sepia(0.14) saturate(1.05) contrast(1.06)",
+            filter: "brightness(0.95)", // colores naturales, brillos contenidos
           }}
         />
       </div>

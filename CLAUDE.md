@@ -369,7 +369,7 @@ Hecho en Fase 5:
 
 Séptima ronda (post entrega):
 - Se quitó el reloj de Alonso (team.json sin "icono"; el componente Reloj queda disponible).
-- Personas en tonos cálidos (pedido del equipo): Persona.tsx saturate 0.95 + matriz cálida (R 1.06, B 0.88);
+- Personas en tonos cálidos (pedido del equipo; reemplazado en la ronda 12): Persona.tsx saturate 0.95 + matriz cálida (R 1.06, B 0.88);
   Retrato/Cierre con sepia(0.14) saturate(1.05) contrast(1.06). El fondo sigue azul noche/plata.
 - Re-render final: out/quinteto_9x16.mp4 (26,4 MB) y out/quinteto_16x9.mp4 (22,4 MB) + portadas.
 - Instagram (scripts/instagram.sh -> out/instagram/): composición "Reel-Persona" (1080x1920, 5 s) por persona,
@@ -407,6 +407,14 @@ Undécima ronda ("los recortes están mal, a veces se ve el fondo"):
 - Todo encadenado en scripts/rehacer_recortes.sh (matte -> cleanup -> encode (p3 CRF 20) -> encuadre -> render final -> Instagram -> prueba Benjamín).
 - Previews: previews/recortes_antes_despues.jpg.
 - Queda: en Alonso, ~3 cuadros del paso con una astilla de madera entre las piernas (bajo el degradado Noche, casi no se ve).
+
+Duodécima ronda ("están muy brillosos, colores normales"):
+- Se quitó la igualación de exposición (scripts/ganancias.json en 1,0; antes Pablo +20 %): los clips quedan con los colores de la grabación.
+  assets/work/norm/pN.mp4 = pN_raw.mp4 (los anteriores con ganancia quedaron en assets/work/norm_con_ganancia/).
+- Persona.tsx: sin contraste extra ni tono cálido; solo contención leve de brillos (gamma amplitude 0,96, exponent 1,06; BRILLOS).
+  Retrato y Cierre: brightness(0.95) en vez de sepia/saturate/contrast.
+- Recortes regenerados (alpha desde el cache de BiRefNet) y re-render de videos, portadas e Instagram.
+- Previews: previews/colores_antes_despues.jpg.
 
 Pendientes / preguntas abiertas:
 - Música (opcional).

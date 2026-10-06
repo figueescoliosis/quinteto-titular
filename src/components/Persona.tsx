@@ -16,22 +16,17 @@ export const colocar = (pid: string, c: Colocacion) => {
   return { s, left: c.cabezaCx - e.cabeza_cx * s, top: c.cabezaTop - e.final[1] * s, frames: e.frames };
 };
 
-// Filtro leve igual para los 5 (contraste +, tono cálido a pedido del equipo) y contraluz Hielo
-// que sigue el alpha. Un solo filtro SVG por persona para no encadenar pasadas.
+// Colores naturales de la grabación (pedido del equipo: "normales, no brillosos"): sin contraste
+// extra ni tono cálido, solo una contención leve de los brillos para que la piel no se vea lustrosa.
+// Más el contraluz Hielo que sigue el alpha. Un solo filtro SVG por persona.
+export const BRILLOS = { amplitude: 0.96, exponent: 1.06 };
 const FiltroPersona: React.FC<{ id: string; contraluz: number }> = ({ id, contraluz }) => (
   <svg width={0} height={0} style={{ position: "absolute" }}>
     <filter id={id} x="-15%" y="-10%" width="130%" height="120%" colorInterpolationFilters="sRGB">
-      <feColorMatrix type="saturate" values="0.95" result="sat" />
-      <feColorMatrix
-        in="sat"
-        type="matrix"
-        values="1.06 0 0 0 0.012  0 1.0 0 0 0.004  0 0 0.88 0 0  0 0 0 1 0"
-        result="calido"
-      />
-      <feComponentTransfer in="calido" result="cont">
-        <feFuncR type="linear" slope="1.1" intercept="-0.045" />
-        <feFuncG type="linear" slope="1.1" intercept="-0.045" />
-        <feFuncB type="linear" slope="1.1" intercept="-0.045" />
+      <feComponentTransfer in="SourceGraphic" result="cont">
+        <feFuncR type="gamma" {...BRILLOS} offset="0" />
+        <feFuncG type="gamma" {...BRILLOS} offset="0" />
+        <feFuncB type="gamma" {...BRILLOS} offset="0" />
       </feComponentTransfer>
       <feGaussianBlur in="SourceAlpha" stdDeviation={22 + 14 * contraluz} result="blur" />
       <feFlood floodColor={COLOR.hielo} floodOpacity={0.08 + 0.5 * contraluz * contraluz} />
