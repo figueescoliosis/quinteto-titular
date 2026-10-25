@@ -6,7 +6,8 @@ from pathlib import Path
 import numpy as np, cv2
 ROOT = Path(__file__).resolve().parent.parent
 res = {}
-for pid in ["p1", "p2", "p3", "p4", "p5"]:
+PIDS = [j["id"] for j in json.loads((ROOT / "src/data/team.json").read_text())["jugadores"]]
+for pid in PIDS:
     fs = sorted((ROOT / "assets/work/alpha_clean" / pid).glob("*.png"))
     boxes = []
     for f in fs:

@@ -30,10 +30,16 @@ for j in JUG:
        "-c:v", "libx264", "-crf", "12", "-preset", "slow", "-pix_fmt", "yuv420p",
        str(OUT / f"{j['id']}_raw.mp4"))
 
-def igualar(pid, g):
+def igualar(pid, g, tono=None):
+    """Ganancia lineal por canal y, si la persona lo necesita, un ajuste de tono propio
+    (curva que baja los brillos + saturación), p. ej. un clip con sol más directo que los demás."""
     expr = lambda gain: (f"255*pow(min(1,pow(((val/255)+0.055)/1.055,2.4)*{gain:.4f}),1/2.4)")
+    vf = f"lutrgb=r='{expr(g[0])}':g='{expr(g[1])}':b='{expr(g[2])}'"
+    if tono:
+        if tono.get("curva"): vf += f",curves=all='{tono['curva']}'"
+        if tono.get("saturacion"): vf += f",eq=saturation={tono['saturacion']}"
     ff("-i", str(OUT / f"{pid}_raw.mp4"),
-       "-vf", f"lutrgb=r='{expr(g[0])}':g='{expr(g[1])}':b='{expr(g[2])}'",
+       "-vf", vf,
        "-c:v", "libx264", "-crf", "12", "-preset", "slow", "-pix_fmt", "yuv420p",
        str(OUT / f"{pid}.mp4"))
 
@@ -41,7 +47,7 @@ GAN = ROOT / "scripts/ganancias.json"
 if SOLO:
     gs = json.loads(GAN.read_text())
     for j in JUG:
-        igualar(j["id"], gs[j["id"]])
+        igualar(j["id"], gs[j["id"]], gs.get("tono", {}).get(j["id"]))
     print("reprocesados", SOLO)
     sys.exit(0)
 
@@ -63,6 +69,8 @@ for j in team["jugadores"]:
     pid = j["id"]; g = (ref / stats[pid]) ** STRENGTH  # ganancia lineal por canal
     report[pid] = [round(float(x), 3) for x in g]
     igualar(pid, g)
-GAN.write_text(json.dumps({"_nota": "Ganancias RGB lineales de la igualación (Fase 2).", **report}, indent=1) + "\n")
+previo = json.loads(GAN.read_text()) if GAN.exists() else {}
+GAN.write_text(json.dumps({"_nota": "Ganancias RGB lineales de la igualación (Fase 2).", **report,
+                           **({"tono": previo["tono"]} if "tono" in previo else {})}, indent=1) + "\n")
 print(json.dumps({"pared_lineal": {k: [round(float(x), 4) for x in v] for k, v in stats.items()},
                   "ganancias": report}, indent=1))

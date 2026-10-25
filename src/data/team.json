@@ -84,6 +84,22 @@
         8.2
       ],
       "paso_frame": 27
+    },
+    {
+      "id": "p6",
+      "nombre": "Victor",
+      "apellido": "",
+      "dorsal": null,
+      "posicion": null,
+      "capitan": false,
+      "rol": "",
+      "clip": "VID-20261025-WA0107.mp4",
+      "corte": [
+        9.6,
+        12.55
+      ],
+      "paso_frame": 32,
+      "solo": "El Victor"
     }
   ],
   "orden_presentacion": [
