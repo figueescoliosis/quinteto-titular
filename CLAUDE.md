@@ -440,7 +440,10 @@ Ronda 13: nuevo integrante "El Victor" (p6). El video del equipo sigue con 5.
   (sin argumentos sigue haciendo los 5 + el video del equipo). LEEME.md con la fila 6 y un texto de bienvenida.
 - Cadena para rehacer p6: normalize.py p6 -> matte_birefnet.py p6 -> matte.py p6 0.25 assets/work/alpha_png_rvm/p6 -> cleanup.py p6 9 -> retocar_cabeza.py p6 der
   -> encode_alpha.sh p6 -> encuadre.py -> instagram.sh p6.
-- Previews: previews/f2_p6_magenta.jpg, f2_p6_noche.jpg, victor_vs_felipe.jpg (escala y color al lado de Felipe), victor_retoque_cabeza.jpg.
+- Previews: previews/f2_p6_magenta.jpg, f2_p6_noche.jpg, victor_vs_felipe.jpg (escala y color al lado de Felipe), victor_retoque_cabeza.jpg,
+  victor_cuadros_clave.jpg (cuadros sacados de los 4 videos ya codificados).
+- Archivos: 06_el_victor_reel.mp4 (5 s, 11,6 MB), _16x9.mp4 (5 s, 8,8 MB), _nuevo_integrante.mp4 (7,5 s, 16,1 MB), _nuevo_integrante_16x9.mp4 (7,5 s, 12,1 MB),
+  _foto.jpg (0,8 MB). Render de las 5 piezas: ~5 min. Zip: entrega/Mylquiades_4_el_victor.zip (48 MB: las 5 piezas + LEEME). Los zips 1-3 no cambian.
 
 Pendientes / preguntas abiertas:
 - Música (opcional).
