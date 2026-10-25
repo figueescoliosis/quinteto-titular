@@ -256,13 +256,14 @@ ESTADO
 ==================================================================
 Rama única: ccr-a15b3306-j21m9o
 
-Fase actual: FASE 5 TERMINADA — entregado (CHECKPOINT FINAL).
+Fase actual: FASE 5 TERMINADA — entregado (CHECKPOINT FINAL). Después, rondas de ajustes (abajo); la última, ronda 13: nuevo integrante El Victor (p6).
 
 Equipo (confirmado por el usuario):
 - Es un equipo de Mitos y Leyendas (TCG) llamado "Mylquiades". El formato futsal/Champions es solo la presentación.
 - SIN posiciones ni dorsales en pantalla (team.json: posicion=null, dorsal=null). Solo Pablo Ra lleva rol: "capitán".
 - "Pablo Ra" es su nombre así tal cual (nombre "Pablo", apellido "Ra").
 - p1 Pablo Ra (WA0089, capitán) · p2 Felipe Arias (WA0087) · p3 Benjamín Figueroa (WA0088) · p4 Vladimir Oviedo (WA0090) · p5 Alonso Medina (WA0091).
+- p6 "El Victor" (WA0107): nuevo integrante. Tiene sus piezas propias (ronda 13); no entra al video del equipo.
 - Los videos deben ir SIN el fondo (recortados) y estandarizados entre sí.
 
 Hecho en Fase 1: entorno (setup_env.sh sin cambios, hook, .gitignore), Remotion 4.0.532 en la raíz con @remotion/google-fonts y @remotion/media, skill remotion-dev/skills en .claude/skills/, análisis de clips en src/data/clips.json, previews f1_*.
@@ -419,6 +420,27 @@ Duodécima ronda ("están muy brillosos, colores normales"):
 Entrega en zip (pedido "dame todo en un zip"): entrega/Mylquiades_1_videos.zip (videos 9:16 y 16:9 + portadas, 54 MB),
 Mylquiades_2_instagram_equipo.zip (reel y foto del equipo + LEEME, 69 MB), Mylquiades_3_instagram_personas.zip (5 reels y fotos + LEEME, 62 MB).
 Un solo zip pesa 185 MB: no cabe en GitHub (límite 100 MB por archivo) ni en el envío por chat (30 MB). Si se re-renderiza, rehacer los zips.
+
+Ronda 13: nuevo integrante "El Victor" (p6). El video del equipo sigue con 5.
+- Clip assets/raw/VID-20261025-WA0107.mp4 (720x1280, ~60 fps, 14,3 s): exterior con sol directo, cámara en mano, contrapicado, edificio y reja detrás.
+- team.json: p6 está en "jugadores" pero NO en "orden_presentacion" (Quinteto-* no cambia). "solo": "El Victor" (una línea, como VLADI), sin rol.
+  Corte 9,60-12,02 s (73 cuadros), paso_frame 32 (se gira a la cámara). No termina en 12,55: al final se inclina hacia la cámara y el congelado quedaba a mitad de movimiento.
+- Tono propio en scripts/ganancias.json ("tono" -> p6: curva que baja los brillos + saturación 0,93); normalize.py lo aplica después de la ganancia
+  (p95 de brillo 196 -> 186; los demás 183-187).
+- Recorte: matte_birefnet.py p6 + matte.py p6 0.25 assets/work/alpha_png_rvm/p6 (segunda opinión) + cleanup.py p6 9.
+  OJO: BiRefNet usa ~13 GB de RAM; no correr nada pesado en paralelo (una vista previa lo mató por falta de memoria; retoma desde su caché).
+- Nuevo scripts/retocar_cabeza.py p6 der (va después de cleanup.py): al girar la cabeza, BiRefNet pegaba a la frente una "visera" de pared (cuadros 4-6),
+  una punta en la ceja (12-20) y un bulto en la mejilla (32). Ahí manda RVM, que tiene bien el perfil. También quita el perro de ropa rojo pegado al pelo (25-28).
+  Respaldo en assets/work/alpha_clean_sinretoque/p6 (se renueva solo si cleanup.py vuelve a correr). Preview: previews/victor_retoque_cabeza.jpg.
+- Estabilizar: medido, no hizo falta (en el tramo final la cámara casi no se mueve; la deriva era su paso). Se borró scripts/estabilizar.py.
+- encuadre.py recorre todos los de team.json (p6: cabeza de 211 px en el último cuadro -> misma escala que los demás).
+- Composiciones nuevas: "Persona-Horizontal" (Presentacion 1920x1080, 5 s) y "Nuevo-Integrante" / "Nuevo-Integrante-Horizontal" (src/scenes/NuevoIntegrante.tsx:
+  rótulo de 2,5 s con estrellas que convergen, destello, escudo a color, "NUEVO INTEGRANTE" en plata y "Team Mylquiades"; barrido; su presentación de 5 s; total 7,5 s).
+- scripts/instagram.sh acepta ids: `instagram.sh p6` -> out/instagram/06_el_victor_reel.mp4, _foto.jpg, _16x9.mp4, _nuevo_integrante.mp4 y _nuevo_integrante_16x9.mp4
+  (sin argumentos sigue haciendo los 5 + el video del equipo). LEEME.md con la fila 6 y un texto de bienvenida.
+- Cadena para rehacer p6: normalize.py p6 -> matte_birefnet.py p6 -> matte.py p6 0.25 assets/work/alpha_png_rvm/p6 -> cleanup.py p6 9 -> retocar_cabeza.py p6 der
+  -> encode_alpha.sh p6 -> encuadre.py -> instagram.sh p6.
+- Previews: previews/f2_p6_magenta.jpg, f2_p6_noche.jpg, victor_vs_felipe.jpg (escala y color al lado de Felipe), victor_retoque_cabeza.jpg.
 
 Pendientes / preguntas abiertas:
 - Música (opcional).

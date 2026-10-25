@@ -83,5 +83,22 @@
   ],
   "cabeza_cx": 422,
   "cabeza_ancho": 134
+ },
+ "p6": {
+  "frames": 73,
+  "union": [
+   43,
+   428,
+   1079,
+   1919
+  ],
+  "final": [
+   153,
+   531,
+   867,
+   1919
+  ],
+  "cabeza_cx": 522,
+  "cabeza_ancho": 211
  }
 }
