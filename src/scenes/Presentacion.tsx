@@ -1,7 +1,7 @@
 import React from "react";
 import { AbsoluteFill, Img, interpolate, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import team from "../data/team.json";
-import { icono, lineaNombre, textoGrande } from "../data/equipo";
+import { icono, lineaNombre, rolOro, textoGrande } from "../data/equipo";
 import { Reloj } from "../components/Reloj";
 import { Fondo, Grano, Vineta } from "../components/Fondo";
 import { Persona, colocar, type Colocacion } from "../components/Persona";
@@ -56,6 +56,9 @@ export const Presentacion: React.FC<{ pid: string; logo: TratamientoLogo; standa
   const iconoP = interpolate(frame, [t0 + 10, t0 + 30], [0, 1], clamp);
   const lineaP = interpolate(frame, [t0 + 8, t0 + 24], [0, 1], { ...clamp, easing: CURVA });
   const rolP = interpolate(frame, [t0 + 12, t0 + 26], [0, 1], { ...clamp, easing: CURVA });
+  // Rol en oro: su propio barrido de brillo apenas termina de subir, y queda con un halo cálido.
+  const rolBrillo = interpolate(frame, [t0 + 20, t0 + 44], [0, 1], clamp);
+  const rolHalo = interpolate(frame, [t0 + 22, t0 + 42], [0, 1], { ...clamp, easing: CURVA });
   const camara = interpolate(frame, [0, 105], [1, 1.04], clamp);
 
   // Revelado de texto: sube desde detrás de una máscara (sin fade+slide genérico) y el tracking se cierra.
@@ -113,7 +116,23 @@ export const Presentacion: React.FC<{ pid: string; logo: TratamientoLogo; standa
       <div style={{ marginTop: vertical ? 26 : 22 }}>
         <LineaPlata progreso={lineaP} ancho={vertical ? 560 : 640} origen={vertical ? "centro" : "izquierda"} />
       </div>
-      {j.rol ? (
+      {j.rol && rolOro(j) ? (
+        // Más grande y en oro; el relleno deja espacio al halo dentro de la máscara del revelado.
+        <div
+          style={{
+            margin: `${(vertical ? 24 : 20) - 16}px 0 -16px ${vertical ? 0 : -32}px`,
+            padding: "16px 32px",
+            fontSize: vertical ? 46 : 42,
+            fontWeight: 600,
+            letterSpacing: "0.06em",
+            ...revelar(rolP),
+          }}
+        >
+          <TextoPlata metal="oro" brillo={rolBrillo} resplandor={rolHalo}>
+            {j.rol}
+          </TextoPlata>
+        </div>
+      ) : j.rol ? (
         <div
           style={{
             marginTop: vertical ? 22 : 18,

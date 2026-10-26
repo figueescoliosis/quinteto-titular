@@ -7,10 +7,13 @@ export const COLOR = {
   plata: "#E7ECF3", // texto y líneas
   grafito: "#8C97AB", // sombra de la plata y textos secundarios
   hielo: "#A8DBFF", // solo brillos y contraluz
+  oro: "#F5C451", // acento puntual: el rol destacado de una persona (El Victor, "jugador a honorarios")
 } as const;
 
 // Degradé metálico Plata -> Grafito para texto y líneas.
 export const PLATA_GRADIENT = `linear-gradient(180deg, ${COLOR.plata} 0%, #D3DAE5 42%, #B4BDCC 58%, ${COLOR.grafito} 100%)`;
+// El mismo degradé metálico, en dorado.
+export const ORO_GRADIENT = `linear-gradient(180deg, #FFF6D6 0%, #FFE08A 38%, ${COLOR.oro} 60%, #D99A2B 100%)`;
 
 // Una sola familia: Lexend Exa (ancha, geométrica). Sin dorsales no hace falta la condensada.
 // Se carga desde public/fonts (variable, 100-900; licencia OFL al lado): el Chrome del render no

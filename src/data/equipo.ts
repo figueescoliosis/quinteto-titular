@@ -13,6 +13,7 @@ type Jugador = (typeof team.jugadores)[number] & {
   nombre_mostrado?: string;
   solo?: string;
   icono?: string;
+  rol_estilo?: string;
 };
 
 // Línea chica sobre el texto grande: nombre (o el que pidió mostrar) + apodo entre comillas.
@@ -24,3 +25,6 @@ export const lineaNombre = (j: Jugador): string =>
 export const textoGrande = (j: Jugador): string => (j.solo ?? j.apellido).toUpperCase();
 
 export const icono = (j: Jugador): string | undefined => j.icono;
+
+// Rol destacado: "oro" = dorado con brillo (El Victor: que se note que es "jugador a honorarios").
+export const rolOro = (j: Jugador): boolean => j.rol_estilo === "oro";

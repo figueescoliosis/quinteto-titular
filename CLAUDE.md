@@ -256,14 +256,14 @@ ESTADO
 ==================================================================
 Rama única: ccr-a15b3306-j21m9o
 
-Fase actual: FASE 5 TERMINADA — entregado (CHECKPOINT FINAL). Después, rondas de ajustes (abajo); la última, ronda 13: nuevo integrante El Victor (p6).
+Fase actual: FASE 5 TERMINADA — entregado (CHECKPOINT FINAL). Después, rondas de ajustes (abajo); la última, ronda 14: "jugador a honorarios" en oro bajo El Victor (p6).
 
 Equipo (confirmado por el usuario):
 - Es un equipo de Mitos y Leyendas (TCG) llamado "Mylquiades". El formato futsal/Champions es solo la presentación.
-- SIN posiciones ni dorsales en pantalla (team.json: posicion=null, dorsal=null). Solo Pablo Ra lleva rol: "capitán".
+- SIN posiciones ni dorsales en pantalla (team.json: posicion=null, dorsal=null). En el video del equipo solo Pablo Ra lleva rol: "capitán" (El Victor tiene el suyo en sus piezas, ronda 14).
 - "Pablo Ra" es su nombre así tal cual (nombre "Pablo", apellido "Ra").
 - p1 Pablo Ra (WA0089, capitán) · p2 Felipe Arias (WA0087) · p3 Benjamín Figueroa (WA0088) · p4 Vladimir Oviedo (WA0090) · p5 Alonso Medina (WA0091).
-- p6 "El Victor" (WA0107): nuevo integrante. Tiene sus piezas propias (ronda 13); no entra al video del equipo.
+- p6 "El Victor" (WA0107): nuevo integrante, "jugador a honorarios" (en oro bajo su nombre). Tiene sus piezas propias (rondas 13-14); no entra al video del equipo.
 - Los videos deben ir SIN el fondo (recortados) y estandarizados entre sí.
 
 Hecho en Fase 1: entorno (setup_env.sh sin cambios, hook, .gitignore), Remotion 4.0.532 en la raíz con @remotion/google-fonts y @remotion/media, skill remotion-dev/skills en .claude/skills/, análisis de clips en src/data/clips.json, previews f1_*.
@@ -444,6 +444,15 @@ Ronda 13: nuevo integrante "El Victor" (p6). El video del equipo sigue con 5.
   victor_cuadros_clave.jpg (cuadros sacados de los 4 videos ya codificados).
 - Archivos: 06_el_victor_reel.mp4 (5 s, 11,6 MB), _16x9.mp4 (5 s, 8,8 MB), _nuevo_integrante.mp4 (7,5 s, 16,1 MB), _nuevo_integrante_16x9.mp4 (7,5 s, 12,1 MB),
   _foto.jpg (0,8 MB). Render de las 5 piezas: ~5 min. Zip: entrega/Mylquiades_4_el_victor.zip (48 MB: las 5 piezas + LEEME). Los zips 1-3 no cambian.
+
+Ronda 14: feedback del video de El Victor (lo mandó Vladi por WhatsApp: chat + nota de voz). OJO: el feedback era para Victor, no para Vladi.
+- Pedido: abajo del nombre (arriba taparía "EL VICTOR"), "jugador a honorarios", en amarillo y que brille: que se note que no es parte fija del team, sino en algunos momentos.
+- team.json p6: "rol": "jugador a honorarios", "rol_estilo": "oro".
+- Acento oro (único detalle fuera de la paleta plata): COLOR.oro #F5C451 y ORO_GRADIENT en src/theme.ts; TextoPlata acepta metal="oro" y resplandor (halo cálido);
+  Presentacion.tsx: si rolOro(j) (src/data/equipo.ts), el rol va en oro, Lexend 600, más grande, con su barrido de brillo y halo. El resto de los roles no cambia.
+- El video del equipo y las piezas de los otros 5 no cambian (Victor no está en el video del equipo). Se re-renderizaron solo las 5 piezas de Victor (instagram.sh p6) y el zip 4.
+- La nota de voz se transcribió con faster-whisper (large-v3-turbo, CPU) en un venv del scratchpad; no queda en el repo.
+- Preview: previews/victor_honorarios.jpg.
 
 Pendientes / preguntas abiertas:
 - Música (opcional).

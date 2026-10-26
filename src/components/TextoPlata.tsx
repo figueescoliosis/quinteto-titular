@@ -1,25 +1,36 @@
 import React from "react";
-import { COLOR, PLATA_GRADIENT } from "../theme";
+import { COLOR, ORO_GRADIENT, PLATA_GRADIENT } from "../theme";
+
+// Degradé del metal y tinte del barrido de brillo.
+const METALES = {
+  plata: { degradado: PLATA_GRADIENT, tinte: "rgba(168,219,255,0.6)" },
+  oro: { degradado: ORO_GRADIENT, tinte: "rgba(255,236,170,0.75)" },
+};
 
 // Texto con degradé metálico Plata -> Grafito (background-clip: text) y un barrido de brillo
 // diagonal controlado por `brillo` (0 = antes de entrar, 1 = ya pasó). Se usa una sola vez.
+// `metal="oro"` es el acento puntual (rol destacado); `resplandor` (0..1) le suma un halo cálido.
 export const TextoPlata: React.FC<{
   children: React.ReactNode;
   brillo: number;
+  metal?: keyof typeof METALES;
+  resplandor?: number;
   style?: React.CSSProperties;
-}> = ({ children, brillo, style }) => {
+}> = ({ children, brillo, metal = "plata", resplandor = 0, style }) => {
   const pos = 130 - brillo * 160; // % de background-position del brillo: entra por la izquierda
+  const { degradado, tinte } = METALES[metal];
+  const halo = resplandor > 0 ? ` drop-shadow(0 0 ${12 + 10 * resplandor}px rgba(245,196,81,${0.6 * resplandor}))` : "";
   return (
     <span
       style={{
-        backgroundImage: `linear-gradient(110deg, rgba(255,255,255,0) 42%, rgba(255,255,255,0.95) 50%, rgba(168,219,255,0.6) 53%, rgba(255,255,255,0) 60%), ${PLATA_GRADIENT}`,
+        backgroundImage: `linear-gradient(110deg, rgba(255,255,255,0) 42%, rgba(255,255,255,0.95) 50%, ${tinte} 53%, rgba(255,255,255,0) 60%), ${degradado}`,
         backgroundSize: "300% 100%, 100% 100%",
         backgroundPosition: `${pos}% 0%, 0% 0%`,
         backgroundRepeat: "no-repeat",
         WebkitBackgroundClip: "text",
         backgroundClip: "text",
         color: "transparent",
-        filter: `drop-shadow(0 2px 0 rgba(6,16,43,0.55))`,
+        filter: `drop-shadow(0 2px 0 rgba(6,16,43,0.55))${halo}`,
         ...style,
       }}
     >

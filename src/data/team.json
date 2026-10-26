@@ -92,7 +92,8 @@
       "dorsal": null,
       "posicion": null,
       "capitan": false,
-      "rol": "",
+      "rol": "jugador a honorarios",
+      "rol_estilo": "oro",
       "clip": "VID-20261025-WA0107.mp4",
       "corte": [
         9.6,
