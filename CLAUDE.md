@@ -476,7 +476,8 @@ Ronda 16: animación del logo de esquina "concordante con las demás" (pedido de
 - Entra como último paso de la cascada de texto: PRES.esquinaDelay = 22 frames después del inicio del texto (src/timing.ts;
   entradaEsquina() en Presentacion.tsx). En Victor: frame 64 de su presentación (en la versión con intro, 75 + 64). Termina antes
   del frame 100 (el de la foto 4:5).
-- Preview: previews/victor_logo_animacion.jpg (cuadros 62-100 de la entrada del logo).
+- Preview: previews/victor_logo_animacion.jpg (cuadros 62-100 de la entrada del logo); victor_honorarios.jpg y victor_cuadros_clave.jpg al día.
+- Re-render de las 5 piezas de Victor (~5 min): reel 12,1 MB, 16x9 9,3 MB, con_intro 16,3 MB, con_intro_16x9 12,3 MB, foto 0,8 MB; zip 4 rehecho (49 MB).
 
 Pendientes / preguntas abiertas:
 - Música (opcional).
