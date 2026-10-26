@@ -462,8 +462,8 @@ Ronda 15: más feedback del video de El Victor.
   tamaño que se ajusta al ancho (40 px vertical / ~29 px horizontal).
 - Logo del Gobierno de Chile (lo mandó el usuario, por el chiste de "a honorarios") en la esquina superior derecha de TODAS sus piezas:
   team.json p6 "logo_esquina": "brand/gobierno.png"; src/components/LogoEsquina.tsx (vertical 150 px, a 160 px del borde de arriba y
-  90 px del derecho: libre de la barra de Reels, sin tapar TEAM y entero en la foto 4:5; horizontal 140 px). Entra con la curva única
-  (en la versión con intro, después del destello). Original en assets/raw/logo_gobierno_original.png; scripts/logo_gobierno.py le
+  90 px del derecho: libre de la barra de Reels, sin tapar TEAM y entero en la foto 4:5; horizontal 140 px). Su animación de
+  entrada se rehizo en la ronda 16. Original en assets/raw/logo_gobierno_original.png; scripts/logo_gobierno.py le
   quita el blanco de afuera del círculo -> public/brand/gobierno.png (512x512).
 - Archivos renombrados: out/instagram/06_el_victor_con_intro.mp4 y _con_intro_16x9.mp4 (antes _nuevo_integrante). LEEME sin
   "nuevo integrante" (texto: "El Victor, jugador a honorarios de Team Mylquiades. 🃏"). Zip 4 rehecho (49 MB).
