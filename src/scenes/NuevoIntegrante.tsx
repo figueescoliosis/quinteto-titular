@@ -5,7 +5,7 @@ import { Fondo, Grano, Vineta } from "../components/Fondo";
 import { LogoEsquina } from "../components/LogoEsquina";
 import { Transicion } from "../components/Transicion";
 import { COLOR, CURVA, LEXEND, clamp } from "../theme";
-import { Presentacion } from "./Presentacion";
+import { Presentacion, entradaEsquina } from "./Presentacion";
 
 // Presentación de un integrante nuevo: rótulo (2,5 s) + barrido plateado + su presentación de
 // siempre (5 s, igual que el Reel-Persona). Mismo lenguaje que la intro del video del equipo:
@@ -139,7 +139,8 @@ const Rotulo: React.FC = () => {
 
 export const NuevoIntegrante: React.FC<{ pid: string }> = ({ pid }) => {
   const { fps } = useVideoConfig();
-  const logo = logoEsquina(JUGADORES.find((x) => x.id === pid)!);
+  const j = JUGADORES.find((x) => x.id === pid)!;
+  const logo = logoEsquina(j);
   return (
     <AbsoluteFill style={{ overflow: "hidden" }}>
       <Fondo />
@@ -153,8 +154,8 @@ export const NuevoIntegrante: React.FC<{ pid: string }> = ({ pid }) => {
         <Transicion dur={NUEVO.trans} />
       </Sequence>
       <Vineta />
-      {/* Toda la pieza; entra después del destello del rótulo */}
-      {logo ? <LogoEsquina src={logo} desde={26} /> : null}
+      {/* Encima de la viñeta; entra igual que en su presentación (al final de la cascada de texto) */}
+      {logo ? <LogoEsquina src={logo} desde={NUEVO.rotulo + entradaEsquina(j)} /> : null}
       <Grano />
     </AbsoluteFill>
   );

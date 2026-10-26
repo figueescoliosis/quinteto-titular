@@ -256,7 +256,7 @@ ESTADO
 ==================================================================
 Rama única: ccr-a15b3306-j21m9o
 
-Fase actual: FASE 5 TERMINADA — entregado (CHECKPOINT FINAL). Después, rondas de ajustes (abajo); la última, ronda 15: El Victor (p6) sin "NUEVO INTEGRANTE", "JUGADOR A HONORARIOS" en mayúsculas y logo del Gobierno de Chile en la esquina.
+Fase actual: FASE 5 TERMINADA — entregado (CHECKPOINT FINAL). Después, rondas de ajustes (abajo); la última, ronda 16: animación del logo de esquina de El Victor (p6), con el mismo lenguaje que el resto.
 
 Equipo (confirmado por el usuario):
 - Es un equipo de Mitos y Leyendas (TCG) llamado "Mylquiades". El formato futsal/Champions es solo la presentación.
@@ -468,6 +468,15 @@ Ronda 15: más feedback del video de El Victor.
 - Archivos renombrados: out/instagram/06_el_victor_con_intro.mp4 y _con_intro_16x9.mp4 (antes _nuevo_integrante). LEEME sin
   "nuevo integrante" (texto: "El Victor, jugador a honorarios de Team Mylquiades. 🃏"). Zip 4 rehecho (49 MB).
 - Pesos: reel 12,1 MB, 16x9 9,4 MB, con_intro 16,4 MB, con_intro_16x9 12,5 MB, foto 0,8 MB. Previews: victor_honorarios.jpg y victor_cuadros_clave.jpg actualizados.
+
+Ronda 16: animación del logo de esquina "concordante con las demás" (pedido del usuario).
+- LogoEsquina.tsx ahora entra con el lenguaje del video: anillo plateado que se dibuja desde arriba (16 fr, como los retratos de la
+  Alineación), el logo aparece desde desenfoque con escala 1,1 -> 1,0 (como el escudo detrás de la persona) y un barrido de brillo
+  diagonal lo cruza una vez (como los textos). Misma curva (CURVA).
+- Entra como último paso de la cascada de texto: PRES.esquinaDelay = 22 frames después del inicio del texto (src/timing.ts;
+  entradaEsquina() en Presentacion.tsx). En Victor: frame 64 de su presentación (en la versión con intro, 75 + 64). Termina antes
+  del frame 100 (el de la foto 4:5).
+- Preview: previews/victor_logo_animacion.jpg (cuadros 62-100 de la entrada del logo).
 
 Pendientes / preguntas abiertas:
 - Música (opcional).

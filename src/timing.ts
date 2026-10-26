@@ -14,6 +14,7 @@ export const PRES = {
   logoDur: 22,
   transicion: 8, // barrido diagonal de luz plateada al final de cada persona
   textoDelay: 6, // el texto entra unos frames después del paso
+  esquinaDelay: 22, // logo de esquina (si la persona tiene): último de la cascada, después del rol
 };
 
 // Puntos para SFX (si existen archivos en public/audio/sfx/).

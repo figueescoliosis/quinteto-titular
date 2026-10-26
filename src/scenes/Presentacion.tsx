@@ -19,6 +19,10 @@ const ESCUDO_CARA_Y = 0.36;
 // Ancho aproximado de Lexend Exa en mayúsculas con el tracking usado (em por carácter).
 const EM_POR_LETRA = 1.12;
 
+// Frame (local de la presentación) en que entra el logo de esquina: después del bloque de texto.
+export const entradaEsquina = (j: { paso_frame: number | null }) =>
+  PRES.clipIn + (j.paso_frame ?? 30) + PRES.textoDelay + PRES.esquinaDelay;
+
 export const Presentacion: React.FC<{ pid: string; logo: TratamientoLogo; standalone?: boolean }> = ({
   pid,
   logo,
@@ -198,7 +202,7 @@ export const Presentacion: React.FC<{ pid: string; logo: TratamientoLogo; standa
         {bloqueTexto}
       </AbsoluteFill>
       {standalone ? <Vineta /> : null}
-      {standalone && logoEsquina(j) ? <LogoEsquina src={logoEsquina(j)!} /> : null}
+      {standalone && logoEsquina(j) ? <LogoEsquina src={logoEsquina(j)!} desde={entradaEsquina(j)} /> : null}
       {standalone ? <Grano /> : null}
     </AbsoluteFill>
   );
