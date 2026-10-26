@@ -450,7 +450,8 @@ Ronda 14: feedback del video de El Victor (lo mandó Vladi por WhatsApp: chat + 
 - team.json p6: "rol": "jugador a honorarios", "rol_estilo": "oro".
 - Acento oro (único detalle fuera de la paleta plata): COLOR.oro #F5C451 y ORO_GRADIENT en src/theme.ts; TextoPlata acepta metal="oro" y resplandor (halo cálido);
   Presentacion.tsx: si rolOro(j) (src/data/equipo.ts), el rol va en oro, Lexend 600, más grande, con su barrido de brillo y halo. El resto de los roles no cambia.
-- El video del equipo y las piezas de los otros 5 no cambian (Victor no está en el video del equipo). Se re-renderizaron solo las 5 piezas de Victor (instagram.sh p6) y el zip 4.
+- El video del equipo y las piezas de los otros 5 no cambian (Victor no está en el video del equipo). Se re-renderizaron solo las 5 piezas de Victor (instagram.sh p6) y el zip 4:
+  reel 12,0 MB, 16x9 9,2 MB, nuevo_integrante 16,4 MB, nuevo_integrante_16x9 12,5 MB, foto 0,8 MB; zip 49 MB.
 - La nota de voz se transcribió con faster-whisper (large-v3-turbo, CPU) en un venv del scratchpad; no queda en el repo.
 - Preview: previews/victor_honorarios.jpg.
 
