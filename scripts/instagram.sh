@@ -4,8 +4,8 @@
 #  - NN_nombre_foto.jpg  : foto 1080x1350 (4:5, feed) del final de su presentación
 #  - 00_equipo_reel.mp4 / 00_equipo_foto.jpg : video completo y foto del cierre
 # Uso: instagram.sh            -> los 5 del video del equipo + el video completo
-#      instagram.sh p6 [...]   -> solo esas personas; además su versión 16:9 y la de «nuevo integrante»
-#                                 (9:16 y 16:9)
+#      instagram.sh p6 [...]   -> solo esas personas; además su versión 16:9 y la versión con rótulo de
+#                                 entrada (escudo + "Team Mylquiades"): NN_nombre_con_intro.mp4 (9:16 y 16:9)
 # Calidad máxima para Instagram: 1080x1920 30 fps H.264 High, BT.709, CRF ${CRF_IG:-10} preset slow,
 # pista AAC silenciosa (compatibilidad) y +faststart. Fotos JPEG calidad 100 con croma 4:4:4.
 cd "$(dirname "$0")/.." || exit 1
@@ -43,8 +43,8 @@ for pid in ${@:-p1 p2 p3 p4 p5}; do
   foto assets/work/ig/$pid.png $O/${n}_${slug}_foto.jpg 95
   if [ $# -gt 0 ]; then
     reel Persona-Horizontal $O/${n}_${slug}_16x9.mp4 "$props"
-    reel Nuevo-Integrante $O/${n}_${slug}_nuevo_integrante.mp4 "{\"pid\":\"$pid\"}"
-    reel Nuevo-Integrante-Horizontal $O/${n}_${slug}_nuevo_integrante_16x9.mp4 "{\"pid\":\"$pid\"}"
+    reel Nuevo-Integrante $O/${n}_${slug}_con_intro.mp4 "{\"pid\":\"$pid\"}"
+    reel Nuevo-Integrante-Horizontal $O/${n}_${slug}_con_intro_16x9.mp4 "{\"pid\":\"$pid\"}"
   fi
 done
 if [ $# -eq 0 ]; then

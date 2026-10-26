@@ -1,8 +1,9 @@
 import React from "react";
 import { AbsoluteFill, Img, interpolate, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import team from "../data/team.json";
-import { icono, lineaNombre, rolOro, textoGrande } from "../data/equipo";
+import { icono, lineaNombre, logoEsquina, rolOro, textoGrande } from "../data/equipo";
 import { Reloj } from "../components/Reloj";
+import { LogoEsquina } from "../components/LogoEsquina";
 import { Fondo, Grano, Vineta } from "../components/Fondo";
 import { Persona, colocar, type Colocacion } from "../components/Persona";
 import { LineaPlata, TextoPlata } from "../components/TextoPlata";
@@ -42,6 +43,9 @@ export const Presentacion: React.FC<{ pid: string; logo: TratamientoLogo; standa
   const textoMaxW = vertical ? width - 120 : width * 0.44;
   const apellido = textoGrande(j);
   const apellidoSize = Math.min(vertical ? 150 : 170, textoMaxW / (apellido.length * EM_POR_LETRA));
+  // Rol en oro, en una sola línea: ancho de mayúsculas con tracking 0,12em ~1,25 em por letra.
+  const rolMaxW = vertical ? width - 120 : width * (1 - 0.585) - 70;
+  const rolSize = Math.min(vertical ? 40 : 34, rolMaxW / ((j.rol ?? "").length * 1.25));
 
   // --- Tiempos ---
   const entradaLogo = interpolate(frame, [PRES.logoIn, PRES.logoIn + PRES.logoDur], [0, 1], { ...clamp, easing: CURVA });
@@ -117,18 +121,19 @@ export const Presentacion: React.FC<{ pid: string; logo: TratamientoLogo; standa
         <LineaPlata progreso={lineaP} ancho={vertical ? 560 : 640} origen={vertical ? "centro" : "izquierda"} />
       </div>
       {j.rol && rolOro(j) ? (
-        // Más grande y en oro; el relleno deja espacio al halo dentro de la máscara del revelado.
+        // En oro y en mayúsculas; el relleno deja espacio al halo dentro de la máscara del revelado.
         <div
           style={{
             margin: `${(vertical ? 24 : 20) - 16}px 0 -16px ${vertical ? 0 : -32}px`,
             padding: "16px 32px",
-            fontSize: vertical ? 46 : 42,
+            fontSize: rolSize,
             fontWeight: 600,
-            letterSpacing: "0.06em",
+            letterSpacing: "0.12em",
+            whiteSpace: "nowrap",
             ...revelar(rolP),
           }}
         >
-          <TextoPlata metal="oro" brillo={rolBrillo} resplandor={rolHalo}>
+          <TextoPlata metal="oro" brillo={rolBrillo} resplandor={rolHalo} style={{ marginRight: "-0.12em" }}>
             {j.rol}
           </TextoPlata>
         </div>
@@ -193,6 +198,7 @@ export const Presentacion: React.FC<{ pid: string; logo: TratamientoLogo; standa
         {bloqueTexto}
       </AbsoluteFill>
       {standalone ? <Vineta /> : null}
+      {standalone && logoEsquina(j) ? <LogoEsquina src={logoEsquina(j)!} /> : null}
       {standalone ? <Grano /> : null}
     </AbsoluteFill>
   );

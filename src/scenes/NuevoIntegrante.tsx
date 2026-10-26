@@ -1,15 +1,16 @@
 import React, { useMemo } from "react";
 import { AbsoluteFill, Img, Sequence, interpolate, random, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
-import { EQUIPO, visible } from "../data/equipo";
+import { EQUIPO, JUGADORES, logoEsquina, visible } from "../data/equipo";
 import { Fondo, Grano, Vineta } from "../components/Fondo";
-import { TextoPlata } from "../components/TextoPlata";
+import { LogoEsquina } from "../components/LogoEsquina";
 import { Transicion } from "../components/Transicion";
 import { COLOR, CURVA, LEXEND, clamp } from "../theme";
 import { Presentacion } from "./Presentacion";
 
-// Presentación de un integrante nuevo: rótulo de bienvenida (2,5 s) + barrido plateado + su
-// presentación de siempre (5 s, igual que el Reel-Persona). Mismo lenguaje que la intro del video
-// del equipo: estrellas que convergen, destello, escudo a color y título en plata con barrido.
+// Presentación de un integrante nuevo: rótulo (2,5 s) + barrido plateado + su presentación de
+// siempre (5 s, igual que el Reel-Persona). Mismo lenguaje que la intro del video del equipo:
+// estrellas que convergen, destello, escudo a color y "Team Mylquiades". Sin título: se pidió
+// quitar "NUEVO INTEGRANTE" (El Victor es "jugador a honorarios").
 export const NUEVO = { rotulo: 75, trans: 10, persona: 150 };
 export const NUEVO_DUR = NUEVO.rotulo + NUEVO.persona;
 
@@ -20,7 +21,7 @@ const Rotulo: React.FC = () => {
   const { width, height } = useVideoConfig();
   const vertical = height > width;
   const cx = width / 2;
-  const cy = height * (vertical ? 0.4 : 0.38);
+  const cy = height * (vertical ? 0.46 : 0.43); // escudo + línea + nombre del equipo, centrados
   const DESTELLO = 20;
 
   const particulas = useMemo(
@@ -35,17 +36,14 @@ const Rotulo: React.FC = () => {
 
   const destello = interpolate(frame, [DESTELLO - 4, DESTELLO, DESTELLO + 22], [0, 1, 0], clamp);
   const escudoP = interpolate(frame, [DESTELLO - 2, DESTELLO + 18], [0, 1], { ...clamp, easing: CURVA });
-  const tituloP = interpolate(frame, [DESTELLO + 10, DESTELLO + 28], [0, 1], { ...clamp, easing: CURVA });
-  const brillo = interpolate(frame, [DESTELLO + 18, DESTELLO + 42], [0, 1], clamp);
-  const lineaP = interpolate(frame, [DESTELLO + 16, DESTELLO + 34], [0, 1], { ...clamp, easing: CURVA });
-  const subP = interpolate(frame, [DESTELLO + 22, DESTELLO + 38], [0, 1], { ...clamp, easing: CURVA });
+  const lineaP = interpolate(frame, [DESTELLO + 10, DESTELLO + 28], [0, 1], { ...clamp, easing: CURVA });
+  const subP = interpolate(frame, [DESTELLO + 16, DESTELLO + 32], [0, 1], { ...clamp, easing: CURVA });
   const camara = interpolate(frame, [0, NUEVO.rotulo], [1, 1.04], clamp);
 
   const escudoW = vertical ? 470 : 300;
   const escudoH = escudoW * ESCUDO_RATIO;
   const escudoTop = cy - escudoH * 0.62;
-  const tituloSize = vertical ? 82 : 76;
-  const tituloTop = escudoTop + escudoH + (vertical ? 64 : 34);
+  const textoTop = escudoTop + escudoH + (vertical ? 44 : 28);
 
   const revelar = (p: number): React.CSSProperties => ({
     clipPath: `inset(${(1 - p) * 100}% -10% -20% -10%)`,
@@ -103,7 +101,7 @@ const Rotulo: React.FC = () => {
           position: "absolute",
           left: 0,
           right: 0,
-          top: tituloTop,
+          top: textoTop,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -113,29 +111,6 @@ const Rotulo: React.FC = () => {
       >
         <div
           style={{
-            fontSize: tituloSize,
-            fontWeight: 700,
-            letterSpacing: `${0.16 + (1 - tituloP) * 0.2}em`,
-            marginRight: "-0.16em",
-            lineHeight: 1.1,
-            ...revelar(tituloP),
-          }}
-        >
-          <TextoPlata brillo={brillo}>
-            {vertical ? (
-              <>
-                NUEVO
-                <br />
-                INTEGRANTE
-              </>
-            ) : (
-              "NUEVO INTEGRANTE"
-            )}
-          </TextoPlata>
-        </div>
-        <div
-          style={{
-            marginTop: vertical ? 34 : 24,
             width: vertical ? 520 : 620,
             height: 2,
             background: `linear-gradient(90deg, rgba(231,236,243,0) 0%, ${COLOR.plata} 50%, rgba(140,151,171,0) 100%)`,
@@ -164,6 +139,7 @@ const Rotulo: React.FC = () => {
 
 export const NuevoIntegrante: React.FC<{ pid: string }> = ({ pid }) => {
   const { fps } = useVideoConfig();
+  const logo = logoEsquina(JUGADORES.find((x) => x.id === pid)!);
   return (
     <AbsoluteFill style={{ overflow: "hidden" }}>
       <Fondo />
@@ -177,6 +153,8 @@ export const NuevoIntegrante: React.FC<{ pid: string }> = ({ pid }) => {
         <Transicion dur={NUEVO.trans} />
       </Sequence>
       <Vineta />
+      {/* Toda la pieza; entra después del destello del rótulo */}
+      {logo ? <LogoEsquina src={logo} desde={26} /> : null}
       <Grano />
     </AbsoluteFill>
   );

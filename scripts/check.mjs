@@ -14,6 +14,7 @@ const archivos = [
 ];
 for (const j of team.jugadores) {
   archivos.push(`assets/raw/${j.clip}`, `public/alpha/${j.id}.webm`, `public/alpha/${j.id}_final.png`);
+  if (j.logo_esquina) archivos.push(`public/${j.logo_esquina}`);
 }
 for (const f of archivos) if (!existsSync(f)) errores.push(`falta ${f}`);
 // La música es opcional: si no está, el video sale sin audio.

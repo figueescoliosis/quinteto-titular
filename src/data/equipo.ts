@@ -14,6 +14,7 @@ type Jugador = (typeof team.jugadores)[number] & {
   solo?: string;
   icono?: string;
   rol_estilo?: string;
+  logo_esquina?: string;
 };
 
 // Línea chica sobre el texto grande: nombre (o el que pidió mostrar) + apodo entre comillas.
@@ -28,3 +29,6 @@ export const icono = (j: Jugador): string | undefined => j.icono;
 
 // Rol destacado: "oro" = dorado con brillo (El Victor: que se note que es "jugador a honorarios").
 export const rolOro = (j: Jugador): boolean => j.rol_estilo === "oro";
+
+// Logo chico en la esquina de sus piezas propias (El Victor: el del Gobierno de Chile, por el chiste de "a honorarios").
+export const logoEsquina = (j: Jugador): string | undefined => j.logo_esquina;

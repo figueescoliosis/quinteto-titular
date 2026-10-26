@@ -256,14 +256,14 @@ ESTADO
 ==================================================================
 Rama única: ccr-a15b3306-j21m9o
 
-Fase actual: FASE 5 TERMINADA — entregado (CHECKPOINT FINAL). Después, rondas de ajustes (abajo); la última, ronda 14: "jugador a honorarios" en oro bajo El Victor (p6).
+Fase actual: FASE 5 TERMINADA — entregado (CHECKPOINT FINAL). Después, rondas de ajustes (abajo); la última, ronda 15: El Victor (p6) sin "NUEVO INTEGRANTE", "JUGADOR A HONORARIOS" en mayúsculas y logo del Gobierno de Chile en la esquina.
 
 Equipo (confirmado por el usuario):
 - Es un equipo de Mitos y Leyendas (TCG) llamado "Mylquiades". El formato futsal/Champions es solo la presentación.
 - SIN posiciones ni dorsales en pantalla (team.json: posicion=null, dorsal=null). En el video del equipo solo Pablo Ra lleva rol: "capitán" (El Victor tiene el suyo en sus piezas, ronda 14).
 - "Pablo Ra" es su nombre así tal cual (nombre "Pablo", apellido "Ra").
 - p1 Pablo Ra (WA0089, capitán) · p2 Felipe Arias (WA0087) · p3 Benjamín Figueroa (WA0088) · p4 Vladimir Oviedo (WA0090) · p5 Alonso Medina (WA0091).
-- p6 "El Victor" (WA0107): nuevo integrante, "jugador a honorarios" (en oro bajo su nombre). Tiene sus piezas propias (rondas 13-14); no entra al video del equipo.
+- p6 "El Victor" (WA0107): "JUGADOR A HONORARIOS" (en oro bajo su nombre) y logo del Gobierno de Chile en la esquina. Tiene sus piezas propias (rondas 13-15); no entra al video del equipo.
 - Los videos deben ir SIN el fondo (recortados) y estandarizados entre sí.
 
 Hecho en Fase 1: entorno (setup_env.sh sin cambios, hook, .gitignore), Remotion 4.0.532 en la raíz con @remotion/google-fonts y @remotion/media, skill remotion-dev/skills en .claude/skills/, análisis de clips en src/data/clips.json, previews f1_*.
@@ -454,6 +454,19 @@ Ronda 14: feedback del video de El Victor (lo mandó Vladi por WhatsApp: chat + 
   reel 12,0 MB, 16x9 9,2 MB, nuevo_integrante 16,4 MB, nuevo_integrante_16x9 12,5 MB, foto 0,8 MB; zip 49 MB.
 - La nota de voz se transcribió con faster-whisper (large-v3-turbo, CPU) en un venv del scratchpad; no queda en el repo.
 - Preview: previews/victor_honorarios.jpg.
+
+Ronda 15: más feedback del video de El Victor.
+- Se QUITÓ "NUEVO INTEGRANTE" del rótulo, sin reemplazo (el usuario aclaró: quitarlo nomás). Queda: estrellas, destello, escudo a color,
+  línea y "Team Mylquiades", recentrados (src/scenes/NuevoIntegrante.tsx; la composición interna sigue llamándose "Nuevo-Integrante").
+- "JUGADOR A HONORARIOS" todo en mayúsculas (team.json p6 "rol" en mayúsculas): oro, Lexend 600, tracking 0,12em, en una sola línea con
+  tamaño que se ajusta al ancho (40 px vertical / ~29 px horizontal).
+- Logo del Gobierno de Chile (lo mandó el usuario, por el chiste de "a honorarios") en la esquina superior derecha de TODAS sus piezas:
+  team.json p6 "logo_esquina": "brand/gobierno.png"; src/components/LogoEsquina.tsx (vertical 150 px, a 160 px del borde de arriba y
+  90 px del derecho: libre de la barra de Reels, sin tapar TEAM y entero en la foto 4:5; horizontal 140 px). Entra con la curva única
+  (en la versión con intro, después del destello). Original en assets/raw/logo_gobierno_original.png; scripts/logo_gobierno.py le
+  quita el blanco de afuera del círculo -> public/brand/gobierno.png (512x512).
+- Archivos renombrados: out/instagram/06_el_victor_con_intro.mp4 y _con_intro_16x9.mp4 (antes _nuevo_integrante). LEEME sin
+  "nuevo integrante" (texto: "El Victor, jugador a honorarios de Team Mylquiades. 🃏"). Zip 4 rehecho.
 
 Pendientes / preguntas abiertas:
 - Música (opcional).

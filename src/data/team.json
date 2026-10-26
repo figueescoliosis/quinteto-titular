@@ -92,8 +92,9 @@
       "dorsal": null,
       "posicion": null,
       "capitan": false,
-      "rol": "jugador a honorarios",
+      "rol": "JUGADOR A HONORARIOS",
       "rol_estilo": "oro",
+      "logo_esquina": "brand/gobierno.png",
       "clip": "VID-20261025-WA0107.mp4",
       "corte": [
         9.6,

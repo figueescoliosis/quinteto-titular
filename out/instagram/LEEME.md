@@ -11,9 +11,9 @@ Todos los archivos están en esta carpeta (`out/instagram/`).
 | 3 | Benjamín Figueroa (BenjaMyL) | `03_benjamin_figueroa_reel.mp4` | `03_benjamin_figueroa_foto.jpg` |
 | 4 | Vladi | `04_vladi_reel.mp4` | `04_vladi_foto.jpg` |
 | 5 | Alonso Medina | `05_alonso_medina_reel.mp4` | `05_alonso_medina_foto.jpg` |
-| 6 | El Victor (nuevo integrante) | `06_el_victor_reel.mp4` (5 s) o `06_el_victor_nuevo_integrante.mp4` (7,5 s, con rótulo de bienvenida) | `06_el_victor_foto.jpg` |
+| 6 | El Victor (jugador a honorarios) | `06_el_victor_reel.mp4` (5 s) o `06_el_victor_con_intro.mp4` (7,5 s, con rótulo del escudo al inicio) | `06_el_victor_foto.jpg` |
 
-Versiones horizontales 16:9 de El Victor (YouTube, pantallas): `06_el_victor_16x9.mp4` y `06_el_victor_nuevo_integrante_16x9.mp4`.
+Versiones horizontales 16:9 de El Victor (YouTube, pantallas): `06_el_victor_16x9.mp4` y `06_el_victor_con_intro_16x9.mp4`.
 
 ## Calidad
 
@@ -60,8 +60,8 @@ Sin eso, la app baja la calidad al subir con datos móviles. Mejor subirlas con 
 > Cierra la alineación: Alonso Medina.
 > #MitosYLeyendas #MyL #TCG #TeamMylquiades
 
-**6 · El Victor (nuevo integrante)**
-> Nuevo integrante en Team Mylquiades: bienvenido, El Victor. 🃏
+**6 · El Victor (jugador a honorarios)**
+> El Victor, jugador a honorarios de Team Mylquiades. 🃏
 > #MitosYLeyendas #MyL #TCG #TeamMylquiades
 
 Etiqueta a cada uno con su @ de Instagram (no los tengo).
