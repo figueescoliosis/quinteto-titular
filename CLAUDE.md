@@ -466,7 +466,8 @@ Ronda 15: más feedback del video de El Victor.
   (en la versión con intro, después del destello). Original en assets/raw/logo_gobierno_original.png; scripts/logo_gobierno.py le
   quita el blanco de afuera del círculo -> public/brand/gobierno.png (512x512).
 - Archivos renombrados: out/instagram/06_el_victor_con_intro.mp4 y _con_intro_16x9.mp4 (antes _nuevo_integrante). LEEME sin
-  "nuevo integrante" (texto: "El Victor, jugador a honorarios de Team Mylquiades. 🃏"). Zip 4 rehecho.
+  "nuevo integrante" (texto: "El Victor, jugador a honorarios de Team Mylquiades. 🃏"). Zip 4 rehecho (49 MB).
+- Pesos: reel 12,1 MB, 16x9 9,4 MB, con_intro 16,4 MB, con_intro_16x9 12,5 MB, foto 0,8 MB. Previews: victor_honorarios.jpg y victor_cuadros_clave.jpg actualizados.
 
 Pendientes / preguntas abiertas:
 - Música (opcional).
